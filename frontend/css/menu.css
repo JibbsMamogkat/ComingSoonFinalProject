@@ -1,0 +1,33 @@
+/* Menu Sections */
+.menu-section {
+    margin-bottom: 2rem;
+}
+
+.menu-section h2 {
+    margin-bottom: 1rem;
+}
+
+/* Grid Layout */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: left;
+}
+
+.menu-item h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+}
+
+.menu-item p {
+    margin: 0.25rem 0;
+}
