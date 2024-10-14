@@ -1,0 +1,15 @@
+# Node modules folder
+node_modules/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+npm-debug.log*
+
+# Operating system files
+.DS_Store
+
+# Other dependencies or cache files
+package-lock.json
