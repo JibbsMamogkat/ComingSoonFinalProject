@@ -24,21 +24,3 @@ app.get('/menu', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-//testing
-const testItem = new MenuItem({
-  name: 'Adobo',
-  price: 10,
-  description: 'Delicious Filipino dish',
-  category: 'Main',
-  available: true,
-  isPopular: true
-});
-
-testItem.save()
-  .then(() => console.log('Menu item saved successfully!'))
-  .catch(error => console.error('Error saving menu item:', error));
-
-  MenuItem.find({})
-  .then(items => console.log('Menu items in database:', items))
-  .catch(error => console.error('Error fetching menu items:', error));
