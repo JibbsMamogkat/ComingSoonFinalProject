@@ -1,73 +1,95 @@
-/* Basic reset and styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-}
-
-/* Sidebar for navigation links */
-.sidebar {
-    background-color: #444;
-    width: 120px; /* Width of the sidebar */
-    height: 100vh; /* Full height */
+    background-color: #f8f8f8;
+    color: #333;
     display: flex;
     flex-direction: column;
-    padding: 1rem 0; /* Padding for top and bottom */
-    position: fixed; /* Fixed positioning on the left */
-    left: 0;
-    top: 0;
 }
 
-.sidebar nav ul {
+header {
+    background-color: #333; /* Background color for header */
+    color: #fff; /* Text color in header */
+    padding: 1rem 0; /* Padding for the header */
+}
+
+header nav ul {
     list-style: none; /* Remove default list style */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margin */
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center items in nav */
 }
 
-.sidebar nav ul li {
-    margin: 1rem 0; /* Margin for spacing */
+header nav ul li {
+    margin: 0 1rem; /* Spacing between list items */
 }
 
-.sidebar nav ul li a {
+header nav ul li a {
+    color: #fff; /* Link text color */
     text-decoration: none; /* Remove underline */
-    color: white; /* Text color */
+    font-weight: bold; /* Make link text bold */
 }
 
-.sidebar .logout {
-    background-color: #333; /* Logout button color */
-    color: white; /* Text color */
+header nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.contact-us {
+    width: 50%;
+    margin: 50px auto; /* Center the contact form */
+    background-color: #fff; /* Background color for contact section */
+    padding: 20px; /* Padding for contact section */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Heading text color */
+}
+
+form {
+    display: flex; /* Use flexbox for form layout */
+    flex-direction: column; /* Arrange form elements vertically */
+}
+
+label {
+    margin-top: 10px; /* Margin for labels */
+    font-weight: bold; /* Bold labels */
+    color: #555; /* Label text color */
+}
+
+input, textarea {
+    padding: 10px; /* Padding for input and textarea */
+    margin-top: 5px; /* Margin for spacing */
+    border: 1px solid #ccc; /* Border for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size for inputs */
+}
+
+button {
+    margin-top: 20px; /* Margin for button */
+    padding: 10px; /* Padding for button */
+    background-color: #28a745; /* Button background color */
+    color: white; /* Button text color */
     border: none; /* Remove border */
-    padding: 0.5rem 1rem; /* Button padding */
-    cursor: pointer; /* Pointer cursor */
-    margin-top: auto; /* Push to the bottom */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for button */
 }
 
-/* Main content area */
-main {
-    margin-left: 140px; /* Space for the sidebar */
-    padding: 2rem; /* Padding around the main content */
-    flex-grow: 1; /* Allow main to grow */
-}
-
-/* Header styles */
-header {
-    background-color: #333; /* Header background color */
-    padding: 1rem; /* Padding around the header */
-}
-
-header h1 {
-    color: #fff; /* Header text color */
-}
-
-/* Section styles */
-section {
-    margin-bottom: 2rem; /* Space between sections */
+button:hover {
+    background-color: #218838; /* Darker green on hover */
 }
 
 footer {
-    background-color: #333; /* Footer background color */
-    color: #fff; /* Footer text color */
-    padding: 1rem; /* Padding around footer */
-    text-align: center; /* Centered footer text */
+    background-color: #555; /* Footer background color */
+    color: white; /* Footer text color */
+    text-align: center; /* Center text in footer */
+    padding: 10px; /* Padding for footer */
+    position: fixed; /* Fixed footer */
+    bottom: 0; /* Position at the bottom */
+    width: 100%; /* Full width footer */
 }

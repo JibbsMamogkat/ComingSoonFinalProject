@@ -3,52 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pinoy Plates</title>
+    <title>Contact Us</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/contact.css">
 </head>
 <body>
-    <!-- Sidebar for Navigation Links -->
-    <aside class="sidebar">
+    <!-- Header Section -->
+    <header>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <button class="logout">Log Out</button>
-    </aside>
+    </header>
 
-    <!-- Main Content -->
-    <main>
-        <header>
-            <h1>Welcome to Restaurant Name</h1>
-        </header>
-
-        <section id="home">
-            <h2>Delicious Food, Cozy Atmosphere</h2>
-            <p>Come and enjoy our delightful dishes and warm hospitality.</p>
-        </section>  
-
-        <section id="menu">
-            <h2>Our Menu</h2>
-            <p>Explore our wide range of dishes, from appetizers to desserts.</p>
-        </section>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Learn more about our story and our commitment to quality.</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Get in touch with us for reservations or any inquiries.</p>
-        </section>
-
-        <footer>
-            <p>&copy; 2023 Restaurant Name. All rights reserved.</p>
-        </footer>
-    </main>
+    <!-- Main Contact Us Section -->
+    <section class="contact-us">
+        <h2>Contact Us</h2>
+        <form action="submit-form.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Pinoy Plates. All rights reserved.</p>
+    </footer>
 </body>
 </html>

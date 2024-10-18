@@ -1,118 +1,87 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+    font-family: Arial, sans-serif; /* Font style */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: #f5f5f5; /* Background color */
+    color: #333; /* Text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
 }
 
 header {
-    background-color: #00796b;
-    padding: 10px 0;
+    background-color: #555; /* Header background color */
+    padding: 10px 0; /* Padding for header */
 }
 
 header nav ul {
-    list-style-type: none;
-    padding: 0;
-    text-align: center;
+    list-style: none; /* Remove default list style */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center items in nav */
 }
 
 header nav ul li {
-    display: inline;
-    margin: 0 15px;
+    display: inline; /* Display items inline */
+    margin: 0 15px; /* Spacing between items */
 }
 
 header nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
+    color: white; /* Link text color */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px; /* Font size for links */
 }
 
 header nav ul li a.active {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid white; /* Underline for active link */
 }
 
 /* About Us Section */
 .about-us {
-    background-color: white;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    background-color: white; /* Background color for about section */
+    max-width: 800px; /* Max width for the section */
+    margin: 30px auto; /* Center the section */
+    padding: 20px; /* Padding for the section */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    text-align: center; /* Center text in section */
 }
 
 .about-us h1 {
-    color: #00796b;
-    font-size: 32px;
-    margin-bottom: 20px;
+    color: #00796b; /* Heading color */
+    font-size: 32px; /* Heading font size */
+    margin-bottom: 20px; /* Bottom margin for heading */
 }
 
 .about-us h2 {
-    color: #004d40;
-    font-size: 24px;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    color: #004d40; /* Subheading color */
+    font-size: 24px; /* Subheading font size */
+    margin-top: 30px; /* Top margin for subheading */
+    margin-bottom: 10px; /* Bottom margin for subheading */
 }
 
 .about-us p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
+    font-size: 16px; /* Font size for paragraphs */
+    line-height: 1.6; /* Line height for readability */
+    color: #555; /* Paragraph text color */
 }
 
 .intro, .mission, .vision, .team {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Bottom margin for sections */
 }
 
 .intro p {
-    font-size: 18px;
-    color: #444;
+    font-size: 18px; /* Font size for intro text */
+    color: #444; /* Color for intro text */
 }
-
-
-
-/* Sidebar navigation */
-.sidebar nav ul {
-    list-style: none; /* Remove default list style */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
-}
-
-.sidebar nav ul li {
-    margin: 1rem 0; /* Margin for spacing between items */
-}
-
-.sidebar nav ul li a {
-    text-decoration: none; /* Remove underline */
-    color: white; /* Text color */
-    padding: 0.5rem 1rem; /* Add padding for clickable area */
-    display: block; /* Make the entire area clickable */
-}
-
-/* Active link styling */
-.sidebar nav ul li a.active {
-    background-color: #555; /* Highlight the active link */
-}
-
-
-
-
-
-
-
-
 
 /* Footer */
 footer {
-    background-color: #555;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: #555; /* Footer background color */
+    color: white; /* Footer text color */
+    text-align: center; /* Center text in footer */
+    padding: 10px; /* Padding for footer */
+    position: fixed; /* Fixed footer */
+    bottom: 0; /* Position at bottom */
+    width: 100%; /* Full width footer */
 }

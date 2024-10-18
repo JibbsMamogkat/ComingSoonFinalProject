@@ -1,88 +1,100 @@
+/* General Styles */ 
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8; /* Background color for the page */
+    color: #333; /* Text color */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack elements vertically */
 }
 
-.contact-us {
-    width: 50%;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+header {
+    background-color: #333; /* Background color for header */
+    color: #fff; /* Text color in header */
+    padding: 1rem 0; /* Padding for the header */
 }
 
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #555;
-}
-
-input, textarea {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-/* Sidebar navigation */
-.sidebar nav ul {
+header nav ul {
     list-style: none; /* Remove default list style */
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margin */
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack items vertically */
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: center; /* Center items in nav */
 }
 
-.sidebar nav ul li {
-    margin: 1rem 0; /* Margin for spacing between items */
+header nav ul li {
+    margin: 0 1rem; /* Spacing between list items */
 }
 
-.sidebar nav ul li a {
+header nav ul li a {
+    color: #fff; /* Link text color */
     text-decoration: none; /* Remove underline */
-    color: white; /* Text color */
-    padding: 0.5rem 1rem; /* Add padding for clickable area */
-    display: block; /* Make the entire area clickable */
+    font-weight: bold; /* Make link text bold */
 }
 
-/* Active link styling */
-.sidebar nav ul li a.active {
-    background-color: #555; /* Highlight the active link */
+header nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
 }
+
+main {
+    padding: 2rem; /* Padding for main content */
+}
+
+.contact-us {
+    width: 50%; /* Width of contact section */
+    margin: 50px auto; /* Center the contact form */
+    background-color: #fff; /* Background color for contact section */
+    padding: 20px; /* Padding for contact section */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Heading text color */
+}
+
+form {
+    display: flex; /* Use flexbox for form layout */
+    flex-direction: column; /* Arrange form elements vertically */
+}
+
+label {
+    margin-top: 10px; /* Margin for labels */
+    font-weight: bold; /* Bold labels */
+    color: #555; /* Label text color */
+}
+
+input, textarea {
+    padding: 10px; /* Padding for input and textarea */
+    margin-top: 5px; /* Margin for spacing */
+    border: 1px solid #ccc; /* Border for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size for inputs */
+}
+
+button {
+    margin-top: 20px; /* Margin for button */
+    padding: 10px; /* Padding for button */
+    background-color: #28a745; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for button */
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
 footer {
-    background-color: #555;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: #333; /* Footer background color */
+    color: #fff; /* Footer text color */
+    text-align: center; /* Center text in footer */
+    padding: 1rem 0; /* Padding for footer */
+    position: fixed; /* Fixed footer */
+    width: 100%; /* Full width footer */
+    bottom: 0; /* Position at the bottom */
 }
