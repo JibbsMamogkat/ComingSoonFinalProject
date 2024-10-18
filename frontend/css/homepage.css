@@ -5,14 +5,19 @@
   background-color: lightgrey;
   position: fixed;
   width: 100%;
+  background-color: transparent;
+  z-index: 1;
 }
 #dateTime {
   display: flex;
 }
+#dateTime > h5:last-child {
+  color: white;
+}
 #dateTime > h5 > span {
   font-weight: bold;
+  color: rgb(0, 253, 0);
   width: 2rem;
-  color: black;
   height: 100px;
 }
 .dateTime {
@@ -122,7 +127,74 @@ form button:hover {
 .homepage {
   display: grid;
   grid-template-columns: 1fr;
-  background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a');
+  min-height: 80rem;
 }
 
+
+/* FIRST SECTION*/
+
+#welcome {
+  position: relative;
+  background-image: linear-gradient(rgba(10, 10, 2, 0.85), rgba(10, 10, 2, 0.85)), url("../images/forhomepage/homepagewelcomebackground.jpg");
+  background-size: cover;
+  background-position: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  grid-template-areas: 
+  "HomeOthers welcomeLogo UsOthers"
+  ". welcomeMessage ."
+  ". welcomeButtons ."
+  ;
+}
+
+#welcome > #welcomeOne {
+  grid-area: HomeOthers;
+  position: absolute;
+  bottom: 10px;
+}
+#welcomeOne > a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white; 
+}
+
+#welcomeOne a:last-child {
+  margin-right: 0;
+}
+
+#welcome > #welcomeTwo {
+ grid-area: UsOthers;
+ position: absolute;
+ bottom: 10px;
+}
+
+#welcomeTwo > a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: white; 
+}
+
+#welcomeTwo a:last-child {
+  margin-right: 0;
+}
+#welcome > #welcomeLogo {
+  grid-area: welcomeLogo ; /* lagyan pa*/
+}
+#welcome > #welcomeMessage {
+  grid-area: welcomeMessage;
+  text-align: center;
+  color: white;
+}
+
+#welcome > #welcomeButtons {
+  grid-area: welcomeButtons;
+}
+
+/* for SECOND SECTION */
+#menu {
+  background-color: lightsalmon;
+  height: 10vh;
+}
 
