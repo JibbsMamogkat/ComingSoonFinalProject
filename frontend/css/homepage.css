@@ -39,7 +39,7 @@
 #logIn > p {
   position: absolute;
   color: white;
-  background-color: black;
+  background-color: grey;
   border-radius: 2px;
   padding-left: 5px;
   padding-right: 5px;
@@ -115,6 +115,14 @@ form button {
 
 form button:hover {
   background-color: #45a049;
+}
+
+
+/* for main Homepage*/
+.homepage {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a');
 }
 
 
