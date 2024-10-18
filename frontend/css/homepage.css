@@ -1,0 +1,128 @@
+#headerHome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgrey;
+  position: fixed;
+  width: 100%;
+}
+#dateTime {
+  display: flex;
+}
+#dateTime > h5 > span {
+  font-weight: bold;
+  width: 2rem;
+  color: black;
+  height: 100px;
+}
+.dateTime {
+  font-weight: bold;
+  color: red;
+}
+#logIn {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  border-radius: 32px;
+
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 10px;
+  transition: background-color 0.2s;
+}
+#logIn:hover {
+  background-color: lightblue;
+}
+#logIn img {
+  width: 35px;
+}
+#logIn > p {
+  position: absolute;
+  color: white;
+  background-color: grey;
+  border-radius: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  left: 1px;
+  right: 1px;
+  bottom: -22px;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#logIn:hover > p {
+  opacity: 1;
+}
+
+
+/* for loginform */
+#loginForm {
+  display: none; 
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100vw; 
+  height: 100vh; 
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center; 
+  align-items: center; 
+
+}
+
+.logIn-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+}
+
+form input {
+  width: 100%; 
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2581a5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
+
+
+/* for main Homepage*/
+.homepage {
+  display: grid;
+  grid-template-columns: 1fr;
+  background-image: url('https://images.unsplash.com/photo-1517849845537-4d257902454a');
+}
+
+
