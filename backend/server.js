@@ -6,8 +6,6 @@ const path = require('path');
 
 const MenuItem = require('./models/menuItemSchema');
 
-console.log(MenuItem);
-
 const app = express();
 
 // Serve static files from the root or `frontend` folder
