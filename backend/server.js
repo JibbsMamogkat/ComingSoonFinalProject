@@ -3,12 +3,19 @@ const express = require('express');
 const multer = require('multer'); // Add this line
 const mongoose = require('mongoose');
 const path = require('path');
+const userRoutes = require('./routes/users.js');
 
 const MenuItem = require('./models/menuItemSchema');
+
 
 console.log(MenuItem);
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use('', userRoutes);
 
 // Serve static files from the root or `frontend` folder
 app.use(express.static('frontend')); // Adjust the path if needed
@@ -27,6 +34,8 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
   }
 });
+
+
 
 const upload = multer({ storage: storage });
 
