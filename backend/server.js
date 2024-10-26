@@ -7,9 +7,6 @@ const userRoutes = require('./routes/users.js');
 
 const MenuItem = require('./models/menuItemSchema');
 
-
-console.log(MenuItem);
-
 const app = express();
 
 app.use(express.json());
