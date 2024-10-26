@@ -30,9 +30,11 @@ const UserSchema = new mongoose.Schema({
 
 } , {timestamps : true});
 
-const User = mongoose.model('User', UserSchema);
 
+const User = mongoose.model('User', UserSchema);
+/*
 mongoose.connect(process.env.MONGO_URI, {
   dbName: 'userBase' });
+*/
 
 module.exports = User;

@@ -233,3 +233,7 @@ form button:hover {
   height: 10vh;
 }
 
+
+#registerForm {
+  display: block;
+}
