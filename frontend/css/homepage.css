@@ -24,6 +24,7 @@
   font-weight: bold;
   color: red;
 }
+
 #logIn {
   position: relative;
   background-color: transparent;
@@ -56,11 +57,27 @@
   margin: 0;
   opacity: 0;
   transition: opacity 0.2s;
+  pointer-events: none;
+  border: none;
 }
 
 #logIn:hover > p {
   opacity: 1;
 }
+
+#logIn > p::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid grey;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 
 /* for loginform */
@@ -121,6 +138,22 @@ form button {
 form button:hover {
   background-color: #45a049;
 }
+/*for Sign up form*/
+
+
+#signUp-content {
+  display: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+
+
+
 
 
 /* for main Homepage*/
