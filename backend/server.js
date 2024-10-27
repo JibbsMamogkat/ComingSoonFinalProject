@@ -66,6 +66,11 @@ app.get('/api/menuItems', async (req, res) => {
   }
 });
 
+//cart routes
+const cartRoutes = require('./routes/cartRoutes.js');
+console.log('Server is registering cart routes on /api');
+app.use('/api', cartRoutes);
+console.log('Cart routes registered on /api');
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
