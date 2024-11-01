@@ -111,8 +111,8 @@ function updateCartItemQuantity(itemId, quantity) {
 // Sync updated quantity with the backend
 async function syncCartItemQuantityWithBackend(itemId, quantity, price) {
     const userId = getUserId();
-    await fetch('/api/cart/add-to-cart', {
-        method: 'POST',
+    await fetch('/api/cart/update-cart', {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, itemId, quantity: parseInt(quantity), price })
     });

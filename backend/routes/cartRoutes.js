@@ -13,6 +13,9 @@ router.post('/cart/add-to-cart', (req, res, next) => {
     next();
 }, cartController.addItemToCart);
 
+// Route to update an item in the cart
+router.put('/cart/update-cart', cartController.updateCartItem);
+
 
 router.delete('/cart/remove-from-cart', cartController.removeItemFromCart);
 router.get('/cart/view-cart/:userId', cartController.viewCart);

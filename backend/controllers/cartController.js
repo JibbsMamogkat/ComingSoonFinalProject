@@ -102,3 +102,70 @@ exports.clearCart = async (req, res) => {
     }
   };
   
+
+// Update an item in the cart
+exports.updateCartItem = async (req, res) => {
+  // Log if route is accessed
+  console.log('Route /api/cart/update-cart accessed');
+  const { userId, itemId, quantity, price } = req.body;
+
+  // Validate input fields
+  const missingFields = [];
+  if (!userId) missingFields.push('userId');
+  if (!itemId) missingFields.push('itemId');
+  if (quantity == null || isNaN(quantity)) missingFields.push('quantity');
+  if (price == null || isNaN(price)) missingFields.push('price');
+
+  if (missingFields.length > 0) {
+    console.error(`Missing or invalid required fields: ${missingFields.join(', ')}`);
+    return res.status(400).json({ error: `Missing or invalid required fields: ${missingFields.join(', ')}` });
+  }
+
+  try {
+    // Find the user's cart
+    let cart = await Cart.findOne({ userId });
+    if (!cart) {
+      console.error(`Cart not found for userId: ${userId}`);
+      return res.status(404).json({ error: 'Cart not found' });
+    }
+    console.log(`Cart found for userId: ${userId}`);
+
+    // Log received itemId details for debugging
+    console.log('Received itemId:', itemId, ', type:', typeof itemId);
+
+    // Extract the actual item ID if itemId is an object with an _id field
+    const actualItemId = itemId._id ? itemId._id.toString() : itemId.toString();
+
+    // Find the item in the cart by comparing item IDs
+    const itemIndex = cart.items.findIndex(item => item.itemId.toString() === actualItemId);
+
+    if (itemIndex === -1) {
+      console.error(`Item with itemId: ${actualItemId} not found in cart for userId: ${userId}`);
+      return res.status(404).json({ error: 'Item not found in cart' });
+    }
+
+    // Log success if item is found
+    console.log(`Item found with itemId: ${actualItemId}`);
+
+    // Update the quantity and total price of the existing item
+    let item = cart.items[itemIndex];
+    console.log(`Updating item in cart - itemId: ${itemId}, current quantity: ${item.quantity}, new quantity: ${quantity}`);
+    item.quantity = quantity;
+    item.totalPrice = quantity * price;
+    console.log(`Updated item - new totalPrice: ${item.totalPrice}`);
+
+    // Recalculate the total amount for the cart
+    cart.totalAmount = cart.items.reduce((acc, item) => acc + item.totalPrice, 0);
+    console.log(`Recalculated total amount for cart: ${cart.totalAmount}`);
+
+    // Save the updated cart
+    console.log('Attempting to save updated cart...');
+    await cart.save();
+    console.log('Cart successfully updated and saved');
+
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error('Error updating cart item:', error);
+    res.status(500).json({ error: 'Failed to update cart item' });
+  }
+};
