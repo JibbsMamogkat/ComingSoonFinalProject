@@ -72,5 +72,10 @@ console.log('Server is registering cart routes on /api');
 app.use('/api', cartRoutes);
 console.log('Cart routes registered on /api');
 
+//serve cart page
+app.get('/cart', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/pages/cart.html'));
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
