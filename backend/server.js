@@ -1,6 +1,7 @@
 require('dotenv').config();   // Load environment variables from .env
 const express = require('express');
 const multer = require('multer'); // Add this line
+const session = require('express-session');
 const mongoose = require('mongoose');
 const path = require('path');
 const userRoutes = require('./routes/users.js');
@@ -9,8 +10,15 @@ const MenuItem = require('./models/menuItemSchema');
 
 const app = express();
 
+app.use(session({
+  secret: 'ComingSoon', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if HTTPS nata
+}));
+
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true })); // True allows Us to handle complex objects and nested data 
 
 app.use('', userRoutes);
 

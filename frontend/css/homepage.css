@@ -237,3 +237,18 @@ form button:hover {
 #registerForm {
   display: block;
 }
+
+
+.no-scroll {  
+  overflow: hidden; /* Hide scrollbars */
+}
+
+#verificationForm {
+  display: none;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 1000px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}

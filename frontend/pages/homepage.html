@@ -26,47 +26,52 @@
         <div id="logo">
         </div>
         <form action="/login" method="post">
-            <input placeholder="Email or Username" type="text" id="useroremail" name="useroremail" required>
-            <input placeholder="Password" type="password" id="password" name="password" required>
+            <input placeholder="Email or Username" type="text" id="useroremail" name="useroremail" >
+            <input placeholder="Password" type="password" id="password" name="password" >
             <button type="submit">Sign In</button>
             <a href=""> Forgot Password</a>
             <div>
               <button>Log In via Facebook</button>
               <button>Log In via Google</button>
             </div>
-            <button class="signUpHomepage">Sign Up</button>
             <a href="">help</a>
         </form>
+        <button class="signUpHomepage">Sign Up</button>
     </div>
     <div id="signUp-content">
       <span id="backBtn" class="close">&gt;</span>
       <div id="logo">
         Pinoy Plates
       </div>
-      <form id="registerForm" action="/home" method="post">
+      <form id="registerForm" action="/signup" method="post">
           <input placeholder="First Name" type="text" id="firstName" name="firstName" required>
           <input placeholder="Last Name" type="text" id="lastName" name="lastName" required>
           <input placeholder="Email" type="email" id="email" name="email" required>
           <input placeholder="Phone Number" type="tel" id="phoneNumber" name="phoneNumber" required>
           <input placeholder="address" type="text" id="address" name="address" required>
-          <input placeholder="Password" type="password" id="password" name="password" required>
+          <input placeholder="Password" type="password" id="passwordSignUp" name="passwordSignUp" required>
           <input placeholder="Confirm Password" type="password" id="confirmPassword" name="confirmPassword" required>
-          <button type="submit">Sign Up</button>
+          <button id="signupClick" type="submit">Sign Up</button>
           <a href="">help</a>
       </form>
     </div>
+    <form id="verificationForm" action="/verify" method="post">
+      <span id="backBtn2" class="close">&gt;</span>
+      <input type="text" name="code" placeholder="Enter verification code" required>
+      <button id="verification" type="submit">Verify</button>
+    </form>
   </div>
   <main class="homepage">
     <section id="welcome">
       <div id="welcomeOne">
         <a href="">Home</a>
-        <a href="">Menu</a>
+        <a href="/menu">Menu</a>
         <a href="">About Us</a>
       </div>
       <div id="weldomeLogo">
       </div>
       <div id="welcomeTwo">
-        <a href="">Order</a>
+        <a href="/menu">Order</a>
         <a href="">Contact</a>
       </div>
       <div id="welcomeMessage">
