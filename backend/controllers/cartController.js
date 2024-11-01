@@ -55,20 +55,65 @@ exports.addItemToCart = async (req, res) => {
 //remove item from 
 
 exports.removeItemFromCart = async (req, res) => {
-    const { userId, itemId } = req.body;
-    try {
-      const cart = await Cart.findOne({ userId });
-      if (!cart) return res.status(404).json({ error: 'Cart not found' });
-  
-      cart.items = cart.items.filter(item => item.itemId != itemId);
-      cart.totalAmount = cart.items.reduce((acc, item) => acc + item.totalPrice, 0);
-  
-      await cart.save();
-      res.status(200).json(cart);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to remove item from cart' });
+  // Log if route is accessed
+  console.log('Route /api/cart/remove-from-cart accessed');
+
+  const { userId, itemId } = req.body;
+
+  // Validate input data
+  if (!userId || !itemId) {
+    console.error('Missing userId or itemId in request body');
+    return res.status(400).json({ error: 'Missing userId or itemId in request body' });
+  }
+
+  console.log(`Received userId: ${userId}, itemId:`, itemId);
+
+  // Extract actual itemId if it is an object
+  const actualItemId = typeof itemId === 'object' && itemId._id ? itemId._id.toString() : itemId.toString();
+
+  console.log(`Extracted actual itemId for comparison: ${actualItemId}`);
+
+  try {
+    // Find the user's cart
+    const cart = await Cart.findOne({ userId });
+    if (!cart) {
+      console.error(`Cart not found for userId: ${userId}`);
+      return res.status(404).json({ error: 'Cart not found' });
     }
-  };
+
+    console.log('Initial items in cart:', cart.items);
+
+    // Check if the item exists in the cart before removing
+    const itemExists = cart.items.some(item => item.itemId.toString() === actualItemId);
+    if (!itemExists) {
+      console.error(`Item with itemId: ${actualItemId} not found in cart for userId: ${userId}`);
+      return res.status(404).json({ error: 'Item not found in cart' });
+    }
+
+    console.log(`Item with itemId: ${actualItemId} found in cart, proceeding to remove`);
+
+    // Filter out the item to be removed
+    cart.items = cart.items.filter(item => item.itemId.toString() !== actualItemId);
+
+    // Log the items after removal for debugging
+    console.log('Items in cart after removal:', cart.items);
+
+    // Recalculate the total amount
+    cart.totalAmount = cart.items.reduce((acc, item) => acc + item.totalPrice, 0);
+    console.log(`Recalculated total amount for cart: ${cart.totalAmount}`);
+
+    // Save the updated cart
+    console.log('Attempting to save updated cart...');
+    await cart.save();
+
+    // Log confirmation if item is successfully removed and cart is saved
+    console.log(`Item removed from cart - itemId: ${actualItemId}`);
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error('Error removing item from cart:', error);
+    res.status(500).json({ error: 'Failed to remove item from cart' });
+  }
+};
   
 
 //view cart
@@ -97,6 +142,8 @@ exports.clearCart = async (req, res) => {
         { new: true }
       );
       res.status(200).json(cart);
+      //log if cart is cleared
+      console.log('Cart cleared successfully');
     } catch (error) {
       res.status(500).json({ error: 'Failed to clear cart' });
     }
