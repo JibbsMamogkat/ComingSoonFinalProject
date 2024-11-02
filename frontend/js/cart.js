@@ -84,14 +84,6 @@ function setupQuantityInput(row, item) {
     });
 }
 
-// Sets up the remove button event listener
-function setupRemoveButton(row, item) {
-    const removeButton = row.querySelector('button');
-    removeButton.addEventListener('click', () => {
-        removeFromCart(item.itemId, item.price);
-    });
-}
-
 // Update quantity of an item in the cart
 async function updateQuantity(itemId, quantity, price) {
     updateCartItemQuantity(itemId, quantity);
@@ -115,6 +107,14 @@ async function syncCartItemQuantityWithBackend(itemId, quantity, price) {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId, itemId, quantity: parseInt(quantity), price })
+    });
+}
+
+// Sets up the remove button event listener
+function setupRemoveButton(row, item) {
+    const removeButton = row.querySelector('button');
+    removeButton.addEventListener('click', () => {
+        removeFromCart(item.itemId, item.price);
     });
 }
 
@@ -159,3 +159,8 @@ async function syncCartClearWithBackend() {
     const userId = getUserId();
     await fetch(`/api/cart/clear-cart/${userId}`, { method: 'DELETE' });
 }
+
+// Redirect to the checkout page when checkout button is clicked
+document.getElementById('checkout-button').addEventListener('click', () => {
+    window.location.href = '../pages/checkout.html'; // Redirect to checkout page
+});

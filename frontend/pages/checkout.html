@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/checkout.css">
+    
+</head>
+<body>
+    <h1>Checkout</h1>
+
+    <!-- Order Summary Section -->
+    <section id="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-items">
+            <!-- Items will be populated here via JavaScript -->
+        </div>
+        <p>Total: <span id="order-total">₱0.00</span></p>
+        <button onclick="goToCart()">Edit Cart</button>
+        <button id="confirm-checkout" onclick="confirmCheckout()">Confirm Checkout</button>
+    </section>
+
+    <script defer src="../js/checkout.js"></script>
+</body>
+</html>
