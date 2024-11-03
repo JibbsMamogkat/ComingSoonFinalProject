@@ -49,6 +49,9 @@ app.get('/menu', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/menu.html'));
 });
 
+// Serve the images from frontend/images
+app.use('/images', express.static(path.join(__dirname, '../frontend/images')));
+
 // Endpoint to upload image and create menu item
 app.post('/menuItem', upload.single('image'), async (req, res) => {
   try {

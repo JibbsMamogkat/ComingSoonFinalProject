@@ -27,6 +27,10 @@ const menuItemSchema = new mongoose.Schema({
     isPopular: {
         type: Boolean,
         default: false
+    },
+    imagePath: {
+        type: String,
+        default: []
     }
 }, {
     timestamps: true

@@ -25,6 +25,16 @@ function createMenuItemElement(item) {
     const menuItemElement = document.createElement('div');
     menuItemElement.classList.add('menu-item');
 
+    // Create the image element and set its source to the imagePath
+    const imageElement = document.createElement('img');
+    imageElement.src = item.imagePath;  // Assuming item has an imagePath property
+
+    //log if image was not found
+    if (imageElement.src === 'undefined') {
+        console.log('Image not found');
+    }
+    // imageElement.alt = item.name;       // Set alt attribute for accessibility
+
     const nameElement = document.createElement('h3');
     nameElement.textContent = item.name;
 
@@ -36,7 +46,8 @@ function createMenuItemElement(item) {
 
     const addToCartButton = createAddToCartButton(item);
     
-    menuItemElement.append(nameElement, descriptionElement, priceElement, addToCartButton);
+    // Append the image element at the top, followed by other elements
+    menuItemElement.append(imageElement, nameElement, descriptionElement, priceElement, addToCartButton);
 
     return menuItemElement;
 }
@@ -96,7 +107,7 @@ function getUserId() {
     return "671c37a90b61c2029655ec95"; // Temporary hard-coded user ID
 }
 
-// Function to create cart item data
+// Function to create cart item data for the add to cart functionality
 function createCartItemData(userId, itemId, itemName, itemPrice) {
     return {
         userId,
