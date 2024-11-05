@@ -132,6 +132,7 @@ function handleCartResponse(response, itemName) {
     if (response.ok) {
         console.log(`${itemName} added to cart!`);
         alert(`${itemName} added to cart!`);
+        loadCartCount(); // Update the cart count in the UI
     } else {
         console.error(`Failed to add ${itemName} to cart. Response status: ${response.status}`);
         alert(`Failed to add ${itemName} to cart. Please try again.`);
@@ -143,3 +144,10 @@ function handleCartError(error) {
     console.error('Error adding item to cart:', error);
     alert('An error occurred. Please try again.');
 }
+
+
+// show cart button
+function goToCart() {
+    window.location.href = '/cart'; 
+}
+
