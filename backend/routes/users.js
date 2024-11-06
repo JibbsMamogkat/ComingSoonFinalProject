@@ -8,12 +8,26 @@ router.post('/signup', createUser);
 
 router.post('/verify', verifyUser); 
 
+router.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ message: 'Failed to log out' });
+    }
+    res.status(200).json({ message: 'Logged out successfully' });
+  });
+});
+
 router.get('/home/verifyId123', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
 });
 router.get('/home', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
-});; 
+  const isLoggedIn = !!req.session.userId; // Check if user is logged in
+  res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'), {
+    headers: {
+      'X-User-LoggedIn': isLoggedIn // Set a custom header to indicate login status
+    }
+  });
+}); 
 
 router.get('/home/loginId313', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));

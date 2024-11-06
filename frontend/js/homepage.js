@@ -58,6 +58,7 @@ const signUpVerify = document.getElementById('verification'); // button register
 signUpVerify.addEventListener('click', () => { 
   signUpForm.style.display = 'none';
   verify.style.display = 'flex';
+  document.body.classList.add('no-scroll');
   window.history.pushState({}, '', '/home/verifyId123');
 });
 
@@ -65,6 +66,7 @@ loginButton.addEventListener('click', () => {
   loginForm.style.display = 'flex'; 
   document.body.classList.add('no-scroll');
   window.history.pushState({}, '', '/home/loginId313');
+  
 });
 closeBtn.addEventListener('click', () => {
   loginForm.style.display = 'none';
@@ -112,7 +114,7 @@ if (window.location.pathname === '/home/verifyId123') {
   loginForm.style.display = 'flex';
 }
 
-if (window.location.pathname === '/home/loginId313' || window.location.pathname === '/home/signUpId6969') { 
+if (window.location.pathname === '/home/loginId313' || window.location.pathname === '/home/signUpId6969' || window.location.pathname === '/home/verifyId123') { 
   document.body.classList.add('no-scroll');
 } else {
   document.body.classList.remove('no-scroll');
@@ -121,7 +123,6 @@ if (window.location.pathname === '/home/loginId313' || window.location.pathname 
 //Login and Sign Up Form validation
 
 const registerForm = document.getElementById('registerForm');
-const errorElement = document.getElementById('error');
 
 registerForm.addEventListener('submit', (e) => {
 
@@ -138,29 +139,33 @@ registerForm.addEventListener('submit', (e) => {
   if (phoneNumber.length < 11) {
     messages.push('Phone Number must be at least 11 digits');
     phoneNumberInput.style.border = '2px solid red';
-
+    document.getElementById('errorPhone').innerText = messages.join(', '); 
   } else if (phoneNumber.length >= 12) {
     messages.push('Phone Number must be at most 11 digits');
     phoneNumberInput.style.border = '2px solid red';
+    document.getElementById('errorPhone').innerText = messages.join(', '); 
   }
 
   else if (isNaN(phoneNumber)) {
     messages.push('Phone Number must be a number');
     phoneNumberInput.style.border = '2px solid red';
+    document.getElementById('errorPhone').innerText = messages.join(', '); 
   } 
   // password validation
   else if (password.length < 6) {
     messages.push('Password must be at least 6 characters');
     passwordInput.style.border = '2px solid red';
+    document.getElementById('errorPassword').innerText = messages.join(', ');
   }
   else if (password !== confirmPassword) {
     messages.push('Passwords do not match');
     passwordInput.style.border = '2px solid red';
     confirmPasswordInput.style.border = '2px solid red';
+    document.getElementById('errorPassword').innerText = messages.join(', '); 
+    document.getElementById('errorConfirmPassword').innerText = messages.join(', ');
   }
   if (messages.length > 0) {
     e.preventDefault();  // Prevent form submission
-    errorElement.innerText = messages.join(', ');  // Display error messages
   } else {
     errorElement.innerText = '';
     phoneNumberInput.style.border = ''; 
@@ -169,7 +174,65 @@ registerForm.addEventListener('submit', (e) => {
     signUpForm.style.display = 'none';
     login.style.display = 'flex';
   }
+
 });
+// Handling Errors 
+document.addEventListener('DOMContentLoaded', () => { 
+  const urlParams = new URLSearchParams(window.location.search);
+  const errorMessage = urlParams.get('error');
+  if (errorMessage) {
+    document.getElementById('errorMessage').innerText = decodeURIComponent(errorMessage);
+  }
+});
+
+
+//----- USER LOGIN GUI -----
+const cartButtonHomepage = document.getElementById('CartButton');
+const myaccountButton = document.getElementById('MyAccount');
+const logoutButton = document.getElementById('logOut');
+
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch the home page content
+  const response = await fetch('/home');
+  
+  if (response.ok) {
+    const isLoggedIn = response.headers.get('X-User-LoggedIn') === 'true';
+    const loginButtonImg = document.querySelector('#logIn img');
+    let isClickTimes = true;
+    if (isLoggedIn) {
+      cartButtonHomepage.style.display = 'inline-block';
+      loginButtonImg.src = "../images/icons/account.png"; // Change to logged-in icon
+      loginButton.children[1].remove();
+      loginButton.addEventListener('click', () => {
+        loginForm.style.display = 'none'; 
+        document.body.classList.remove('no-scroll');
+        window.history.pushState({}, '', '/home');
+        if (isClickTimes) {
+          myaccountButton.style.opacity = '1';
+          myaccountButton.style.pointerEvents = 'auto';
+          myaccountButton.style.cursor ='pointer';
+          logoutButton.style.opacity = '1';
+          logoutButton.style.pointerEvents = 'auto';
+          logoutButton.style.cursor = 'pointer';
+        } else {
+          myaccountButton.style.opacity = '0';
+          myaccountButton.style.cursor ='none';
+          logoutButton.style.opacity = '0';
+          logoutButton.style.pointerEvents = 'none';
+        }
+        isClickTimes = !isClickTimes;
+        logoutButton.addEventListener('click', async () => {
+          await fetch('/logout', {method: 'POST'});
+          window.location.href = '/home';
+        });
+      });
+    } else {
+      loginButtonImg.src = "../images/icons/logIn.png"; // Default icon for logged out
+      logoutButton.style.display = 'none';
+    }
+  }
+});
+
 
 /*
 

@@ -16,21 +16,25 @@ const createUser = async (req, res) => {
   const { firstName, lastName, email, phoneNumber, address, passwordSignUp } = req.body;
 
   try {
-    
-    const hashedPassword = await Bcrypt.hash(passwordSignUp, 10);
-    // Temporarily save user data using sessions
-    req.session.tempUser = {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      address,
-      password: hashedPassword
-    };
-
-    await sendVerificationCode({ body: { email } }, res);
+    const emailExist = await User.findOne({ email: email });
+    if (emailExist) { 
+      return res.redirect(`/home/signUpId6969?error=${encodeURIComponent('Email already exists')}`);
+    }
+    else {
+      const hashedPassword = await Bcrypt.hash(passwordSignUp, 10);
+      // Temporarily save user data using sessions
+      req.session.tempUser = {
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        address,
+        password: hashedPassword
+      };
+      await sendVerificationCode({ body: { email } }, res);
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.redirect(`/home/signUpId6969?error=${encodeURIComponent('An error occurred. Please try again.')}`);
   }
 };
 
@@ -44,7 +48,7 @@ const sendVerificationCode = async (req, res) => {
 
     // Send the email
     await transporter.sendMail({
-      from: 'pinoyplates404@gmail.com',
+      from: 'Pinoy Plates',
       to: email,
       subject: 'Verification Code for Pinoy Plates',
       html: `<p>Your verification code is: <strong>${verificationCode}</strong></p>`
@@ -78,26 +82,28 @@ const verifyUser = async (req, res) => {
 };
 
 
-
+// Login function to find the user and validate credentials
 const findUser = async (req, res) => {
   const { useroremail, password } = req.body;
-  const email = useroremail;
   try {
     // Find the user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: useroremail });
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
     const isMatch = await Bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-    // req.session.userId = user._id; // for sessions
-    res.redirect('/menu'); 
+    req.session.userId = user._id; 
+    res.status(200);
+    res.redirect('/home');
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'An error occurred. Please try again.' });
   }
 };
+
 
 module.exports = { createUser, findUser, verifyUser };
 

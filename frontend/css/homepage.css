@@ -252,3 +252,28 @@ form button:hover {
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
+
+/* for GUI*/
+
+/* Initial hidden state of the log out button */
+#logOut {
+  position: absolute;
+  left: 90%;
+  right: 1px; 
+  bottom: -42px;
+  opacity: 0;
+}
+#login:hover > #logOut {
+  opacity: 1;
+}
+#MyAccount {
+  position: absolute;
+  left: 90%;
+  right: 1px; 
+  bottom: -22px;
+  opacity: 0;
+}
+#login:hover > #MyAccount {
+  opacity: 1;
+}
