@@ -39,8 +39,6 @@ updateDateTime();
 
 //we should set this to a MINUTE so that we will not be banned in the free links
 setInterval(updateDateTime, 60000);
-
-
 // for the LOG IN and SIGN UP FORM
 const loginButton = document.querySelector('#logIn'); // homepage UserButton
 const closeBtn = document.getElementById('closeBtn'); // close button for login
@@ -68,6 +66,7 @@ loginButton.addEventListener('click', () => {
   window.history.pushState({}, '', '/home/loginId313');
   
 });
+
 closeBtn.addEventListener('click', () => {
   loginForm.style.display = 'none';
   loginFormInput.reset();
@@ -75,10 +74,9 @@ closeBtn.addEventListener('click', () => {
   window.history.pushState({}, '', '/home'); 
 });
 
-
 signUpButton.addEventListener('click', () => { 
   login.style.display = 'none';
-  signUpForm.style.display = 'flex';
+  signUpForm.style.display = 'grid';
   loginFormInput.reset();
   window.history.pushState({}, '', '/home/signUpId6969');
 });
@@ -91,7 +89,7 @@ backBtn.addEventListener('click', () => {
 });
 backBtn2.addEventListener('click', () => { 
   verify.style.display = 'none';
-  signUpForm.style.display = 'flex';
+  signUpForm.style.display = 'grid';
   window.history.pushState({}, '', '/home/signUpId6969');
 });
 
@@ -103,10 +101,9 @@ if (window.location.pathname === '/home/loginId313') {
 
 if (window.location.pathname === '/home/signUpId6969') {
   login.style.display = 'none';
-  signUpForm.style.display = 'flex';
+  signUpForm.style.display = 'grid';
   loginForm.style.display = 'flex';
 }
-
 if (window.location.pathname === '/home/verifyId123') { 
   verify.style.display = 'flex';
   signUpForm.style.display = 'none';
@@ -125,7 +122,6 @@ if (window.location.pathname === '/home/loginId313' || window.location.pathname 
 const registerForm = document.getElementById('registerForm');
 
 registerForm.addEventListener('submit', (e) => {
-
   // for phone number
   let messages = []; 
   const phoneNumberInput = document.getElementById('phoneNumber');

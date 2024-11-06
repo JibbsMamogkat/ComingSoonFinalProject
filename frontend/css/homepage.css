@@ -143,6 +143,13 @@ form button:hover {
 
 #signUp-content {
   display: none;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  "logo errorMessage" 
+  "registerForm errorMessage"
+  "help errorMessage"
+  ;
+  align-items: center;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -150,11 +157,24 @@ form button:hover {
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+#help {
+  grid-area:help ;
+}
+
+#errorMessage {
+  grid-area: errorMessage;
+  color: red;
+  margin: 0;
+  margin-bottom: 10px;
+}
 
 
-
-
-
+#logo {
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 
 
@@ -232,12 +252,134 @@ form button:hover {
   background-color: lightsalmon;
   height: 10vh;
 }
-
-
 #registerForm {
-  display: block;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 
+  "firstName lastName"
+  "email email"
+  "phoneNumber phoneNumber"
+  "address address"
+  "password password"
+  "confirmPassword confirmPassword"
+  "signupClick signupClick"
+  "textSignUp backBtn"
+  ;
+  grid-area: registerForm;
+  justify-content: center;
+  align-items: center; 
+  position: relative;
+  margin: 0;
+  padding: 1px;
+}
+.textSignUp {
+  position: absolute;
+  right: 10px  ;
+  display: inline-block;
+  margin: 0;
+  grid-area: textSignUp;
+  color: grey;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100px;
+}
+#backBtn {
+  grid-area: backBtn;
+  color: white;
+  justify-content: flex-start;
+  align-items: center;
+  justify-self: start;
+  padding: 10px;
+  margin-top: 5px;
+  width: 100px;
+  font-size: 10px;
 }
 
+#firstName {
+  grid-area: firstName;
+  display: flex;
+  max-width: 120px;
+
+}
+#lastName {
+  grid-area: lastName;
+  display: flex;
+  max-width: 114px;
+}
+#containerEmail {
+  grid-area: email;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 263px;
+  margin-right: 5px;
+  position: relative;
+}
+
+#errorEmail{
+  color: red;
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+#containerPhone {
+  grid-area: phoneNumber;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 263px;
+  margin-right: 5px;
+  position: relative;
+}
+#errorPhone {
+  color: red;
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+#address {
+  grid-area: address;
+  display: flex;
+  max-width: 263px;
+  margin-right: 5px;
+}
+#containerPassword {
+  grid-area: password;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 263px;
+  position: relative;
+  margin-right: 5px;
+}
+#errorPassword {
+  color: red;
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+
+#containerConfirm{
+  grid-area: confirmPassword;
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 263px;
+  margin-right: 5px;
+  position: relative;
+}
+#errorConfirmPassword {
+  color: red;
+  margin: 0;
+  position: absolute;
+  top: 0;
+}
+#signupClick {
+  grid-area: signupClick;
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+  margin-right: 10px ;
+  max-width: 220px;
+
+}
 
 .no-scroll {  
   overflow: hidden; /* Hide scrollbars */
@@ -277,3 +419,6 @@ form button:hover {
 #login:hover > #MyAccount {
   opacity: 1;
 }
+
+
+
