@@ -97,7 +97,17 @@ async function addToCart(itemId, itemName, itemPrice) {
         const response = await sendAddToCartRequest(cartItemData);
 
         handleCartResponse(response, itemName);
+
+        // Update cart count in the UI immediately
+        incrementCartCount();
+
+        // Optionally, fetch the updated cart data to ensure accuracy
+        const cartData = await fetchCartData(userId);
+        const cartCount = cartData.items.reduce((total, item) => total + item.quantity, 0);
+        updateCartCount(cartCount);
+
     } catch (error) {
+        console.log('Error adding item to cart:', error);
         handleCartError(error);
     }
 }
@@ -132,7 +142,6 @@ function handleCartResponse(response, itemName) {
     if (response.ok) {
         console.log(`${itemName} added to cart!`);
         alert(`${itemName} added to cart!`);
-        loadCartCount(); // Update the cart count in the UI
     } else {
         console.error(`Failed to add ${itemName} to cart. Response status: ${response.status}`);
         alert(`Failed to add ${itemName} to cart. Please try again.`);
@@ -151,3 +160,43 @@ function goToCart() {
     window.location.href = '/cart'; 
 }
 
+const userId = getUserId();
+
+//dynamic cart count functionality
+document.addEventListener('DOMContentLoaded', () => {
+    fetchCartData(userId)
+        .then(cartData => {
+            const cartCount = cartData.items.reduce((total, item) => total + item.quantity, 0);
+            updateCartCount(cartCount);
+        })
+        .catch(handleCartCountError);
+});
+
+// Function to fetch cart data for the cart count
+async function fetchCartData(userId) {
+    const response = await fetch(`/api/cart/view-cart/${userId}`);
+    return await response.json();
+}
+
+// Function to update the cart count in the UI
+function updateCartCount(count) {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.textContent = count;
+    }
+}
+
+// Function to handle errors during cart count update
+function handleCartCountError(error) {
+    console.error('Error fetching cart data for cart count:', error);
+    alert('Failed to load cart data. Please try again later.');
+}
+
+// Function to increment the cart count in the UI
+function incrementCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        let currentCount = parseInt(cartCountElement.textContent, 10);
+        cartCountElement.textContent = currentCount + 1;
+    }
+}
