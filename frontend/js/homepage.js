@@ -126,6 +126,17 @@ registerForm.addEventListener('submit', (e) => {
   let messages = []; 
   const phoneNumberInput = document.getElementById('phoneNumber');
   const phoneNumber = phoneNumberInput.value;
+  
+    // Reset previous error state
+  const errorPhone = document.getElementById('errorPhone');
+  const errorPassword = document.getElementById('errorPassword');
+  const errorConfirmPassword = document.getElementById('errorConfirmPassword');
+  errorPhone.style.display = 'flex ';
+  errorPassword.style.display = 'flex';
+  errorConfirmPassword.style.display = 'flex';
+  errorPhone.innerText = '';
+  errorPassword.innerText = '';
+  errorConfirmPassword.innerText = '';
   // for password
   const passwordInput = document.getElementById('passwordSignUp');
   const confirmPasswordInput = document.getElementById('confirmPassword');
@@ -135,49 +146,72 @@ registerForm.addEventListener('submit', (e) => {
   if (phoneNumber.length < 11) {
     messages.push('Phone Number must be at least 11 digits');
     phoneNumberInput.style.border = '2px solid red';
-    document.getElementById('errorPhone').innerText = messages.join(', '); 
+    errorPhone.innerText = messages.join(', '); 
+    phoneNumberInput.addEventListener('mouseover' , () => {
+      errorPhone.style.display = 'none';
+      phoneNumberInput.style.border = '1px solid grey';
+    });
   } else if (phoneNumber.length >= 12) {
     messages.push('Phone Number must be at most 11 digits');
     phoneNumberInput.style.border = '2px solid red';
-    document.getElementById('errorPhone').innerText = messages.join(', '); 
+    errorPhone.innerText = messages.join(', ');
+    phoneNumberInput.addEventListener('mouseover' , () => {
+      errorPhone.style.display = 'none';
+      phoneNumberInput.style.border = '1px solid grey';
+    }); 
   }
 
   else if (isNaN(phoneNumber)) {
     messages.push('Phone Number must be a number');
     phoneNumberInput.style.border = '2px solid red';
-    document.getElementById('errorPhone').innerText = messages.join(', '); 
+    errorPhone.innerText = messages.join(', '); 
+    phoneNumberInput.addEventListener('mouseover' , () => {
+      errorPhone.style.display = 'none';
+      phoneNumberInput.style.border = '1px solid grey';
+    });
   } 
   // password validation
   else if (password.length < 6) {
     messages.push('Password must be at least 6 characters');
     passwordInput.style.border = '2px solid red';
-    document.getElementById('errorPassword').innerText = messages.join(', ');
+    errorPassword.innerText = messages.join(', ');
+    passwordInput.addEventListener('mouseover' , () => {
+      errorPassword.style.display = 'none';
+      passwordInput.style.border = '1px solid grey';
+    });
   }
   else if (password !== confirmPassword) {
     messages.push('Passwords do not match');
     passwordInput.style.border = '2px solid red';
     confirmPasswordInput.style.border = '2px solid red';
-    document.getElementById('errorPassword').innerText = messages.join(', '); 
-    document.getElementById('errorConfirmPassword').innerText = messages.join(', ');
+    errorPassword.innerText = messages.join(', '); 
+    errorConfirmPassword.innerText = messages.join(', ');
+    passwordInput.addEventListener('mouseover', () => {
+      errorPassword.style.display = 'none';
+      passwordInput.style.border = '1px solid grey';
+    });
+    confirmPasswordInput.addEventListener('mouseover', () => {
+      errorConfirmPassword.style.display = 'none'
+      confirmPasswordInput.style.border = '1px solid grey'
+    });
   }
   if (messages.length > 0) {
     e.preventDefault();  // Prevent form submission
-  } else {
-    errorElement.innerText = '';
-    phoneNumberInput.style.border = ''; 
-    passwordInput.style.border = '';
-    confirmPasswordInput.style.border = '';
-    signUpForm.style.display = 'none';
-    login.style.display = 'flex';
-  }
+  } 
 
 });
 // Handling Errors 
 document.addEventListener('DOMContentLoaded', () => { 
   const urlParams = new URLSearchParams(window.location.search);
   const errorMessage = urlParams.get('error');
+  document.getElementById('errorEmail').style.display = 'flex';
   if (errorMessage) {
-    document.getElementById('errorMessage').innerText = decodeURIComponent(errorMessage);
+    document.getElementById('errorEmail').textContent = decodeURIComponent(errorMessage);
+    document.getElementById('email').style.border = '2px solid red';
+    document.getElementById('email').addEventListener('mouseover', () => {
+      document.getElementById('email').style.border = '1px solid grey';
+      document.getElementById('errorEmail').style.display = 'none';
+    });
   }
 });
 

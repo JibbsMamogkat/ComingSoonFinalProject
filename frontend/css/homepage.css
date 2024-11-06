@@ -320,7 +320,10 @@ form button:hover {
   color: red;
   margin: 0;
   position: absolute;
-  top: 0;
+  bottom: -5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-left: 5px;
 }
 #containerPhone {
   grid-area: phoneNumber;
@@ -334,7 +337,10 @@ form button:hover {
   color: red;
   margin: 0;
   position: absolute;
-  top: 0;
+  bottom: -5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-left: 5px;
 }
 #address {
   grid-area: address;
@@ -354,7 +360,10 @@ form button:hover {
   color: red;
   margin: 0;
   position: absolute;
-  top: 0;
+  bottom: -5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-left: 5px;
 }
 
 #containerConfirm{
@@ -369,7 +378,11 @@ form button:hover {
   color: red;
   margin: 0;
   position: absolute;
-  top: 0;
+  bottom: -8px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 #signupClick {
   grid-area: signupClick;
@@ -378,6 +391,7 @@ form button:hover {
   justify-self: center;
   margin-right: 10px ;
   max-width: 220px;
+  margin-top: 5px;
 
 }
 

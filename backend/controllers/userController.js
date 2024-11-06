@@ -18,7 +18,7 @@ const createUser = async (req, res) => {
   try {
     const emailExist = await User.findOne({ email: email });
     if (emailExist) { 
-      return res.redirect(`/home/signUpId6969?error=${encodeURIComponent('Email already exists')}`);
+      return res.redirect(`/home/signUpId6969?error=${encodeURIComponent('Email already exists.')}`);
     }
     else {
       const hashedPassword = await Bcrypt.hash(passwordSignUp, 10);
@@ -74,7 +74,6 @@ const verifyUser = async (req, res) => {
 
     delete verificationCodes[email];
     delete req.session.tempUser;
-
     res.redirect('/home/loginId313');
   } catch (error) {
     res.status(500).json({ message: error.message });
