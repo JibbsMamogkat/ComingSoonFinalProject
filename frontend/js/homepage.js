@@ -254,6 +254,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         logoutButton.addEventListener('click', async () => {
           await fetch('/logout', {method: 'POST'});
           window.location.href = '/home';
+          sessionStorage.clear();
         });
       });
     } else {

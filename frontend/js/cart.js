@@ -4,10 +4,16 @@ let totalAmount = 0;
 
 // Initialize the cart when the page loads
 document.addEventListener('DOMContentLoaded', loadCart);
+//Duff added function blame
+async function getUserId(){
+    let response = await fetch('/api/user-info');
+    let data = await response.json();
+    return data.userId;
+}
 
 // Load cart data from the backend
 async function loadCart() {
-    const userId = getUserId();
+    const userId = await getUserId(); // Duff add await
     const cart = await fetchCartData(userId);
     updateCartState(cart.items);
     renderCart();
@@ -19,10 +25,8 @@ async function fetchCartData(userId) {
     return await response.json();
 }
 
-// Get user ID (placeholder function for now)
-function getUserId() {
-    return "671c37a90b61c2029655ec95"; // Temporary hard-coded user ID
-}
+
+
 
 // Update cart state variables
 function updateCartState(items) {
@@ -51,10 +55,6 @@ function renderCart() {
 }
 
 // Get user ID (assuming it's static or retrieved this way for now)
-function getUserId() {
-    return "671c37a90b61c2029655ec95"; // Replace with actual dynamic user ID if needed
-}
-
 // Create a table row for a cart item
 function createCartItemRow(item) {
     const row = document.createElement('tr');
@@ -102,7 +102,7 @@ function updateCartItemQuantity(itemId, quantity) {
 
 // Sync updated quantity with the backend
 async function syncCartItemQuantityWithBackend(itemId, quantity, price) {
-    const userId = getUserId();
+    const userId = await getUserId(); // Duff add await
     await fetch('/api/cart/update-cart', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -120,7 +120,7 @@ function setupRemoveButton(row, item) {
 
 // Remove an item from the cart
 async function removeFromCart(itemId, price) {
-    const userId = getUserId();
+    const userId = await getUserId(); // Duff add await
     updateCartStateAfterRemoval(itemId);
     await syncCartItemRemovalWithBackend(itemId, userId, price);
     renderCart();
@@ -156,7 +156,7 @@ function clearCartState() {
 
 // Sync cart clearing with the backend
 async function syncCartClearWithBackend() {
-    const userId = getUserId();
+    const userId = await getUserId(); // Duff add await
     await fetch(`/api/cart/clear-cart/${userId}`, { method: 'DELETE' });
 }
 

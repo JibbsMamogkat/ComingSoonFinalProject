@@ -14,11 +14,13 @@ router.post('/logout', (req, res) => {
       return res.status(500).json({ message: 'Failed to log out' });
     }
     res.status(200).json({ message: 'Logged out successfully' });
+    req.session = null;
   });
 });
 
 router.get('/home/verifyId123', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
+  
 });
 router.get('/home', (req, res) => {
   const isLoggedIn = !!req.session.userId; // Check if user is logged in
@@ -29,6 +31,9 @@ router.get('/home', (req, res) => {
   });
 }); 
 
+router.get('/api/user-info', (req, res) => {
+  res.json({ userId: req.session.userId });
+});
 router.get('/home/loginId313', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
  });

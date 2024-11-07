@@ -41,7 +41,6 @@ const createUser = async (req, res) => {
 //send verification code
 const sendVerificationCode = async (req, res) => {
   const { email } = req.body;
-
   try {
     const verificationCode = Math.floor(100000 + Math.random() * 900000);
     verificationCodes[email] = verificationCode; // Store code temporarily 
@@ -53,7 +52,6 @@ const sendVerificationCode = async (req, res) => {
       subject: 'Verification Code for Pinoy Plates',
       html: `<p>Your verification code is: <strong>${verificationCode}</strong></p>`
     });
-
     res.redirect('/home/verifyId123');
   } catch (error) {
     res.status(500).json({ message: error.message });
