@@ -401,12 +401,33 @@ form button:hover {
 
 #verificationForm {
   display: none;
+  position: relative;
+  grid-template-columns: 1fr;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  width: 600px;
+  width: 400px;
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+#verificationForm > div {
+  display: flex;
+}
+#verificationForm > div > input {
+  width: 200px;
+  margin-right: 5px;
+}
+
+
+#verificationForm > div > {
+  justify-content: center;
+  width: 200px;
+  padding: 10px;
+  background-color: #2581a5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 

@@ -31,6 +31,7 @@ const createUser = async (req, res) => {
         address,
         password: hashedPassword
       };
+      req.session.email = email;
       await sendVerificationCode({ body: { email } }, res);
     }
   } catch (error) {
@@ -65,7 +66,7 @@ const verifyUser = async (req, res) => {
     const verificationCode = verificationCodes[email];
 
     if (!verificationCode || verificationCode !== parseInt(code)) {
-      return res.status(400).json({ message: 'Invalid verification code' });
+      return res.redirect(`/home/verifyId123?error=${encodeURIComponent('Incorrect Code.')}`);
     }
 
     const user = await User.create(req.session.tempUser);
@@ -74,7 +75,10 @@ const verifyUser = async (req, res) => {
     delete req.session.tempUser;
     res.redirect('/home/loginId313');
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ 
+      message: error.message,
+      link: '/api/verifyError'
+     });
   }
 };
 

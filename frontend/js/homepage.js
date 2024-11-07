@@ -25,7 +25,7 @@ function updateDateTime() {
       timeAndDate.textContent = ` - ${pinoydate} ${time}:${minute}AM `;
     } else {
       timeAndDate.textContent = ` - ${pinoydate} ${time}:${minute}PM `;
-    }
+    }f
     timeAndDate.classList.add("dateTime");
   });
   day("https://timeapi.io/api/time/current/zone?timeZone=Asia%2FManila").then(({dayOfWeek}) => {
@@ -53,9 +53,28 @@ const signUpFormInput = document.querySelector('form[action="/signup"]');
 const verify = document.getElementById('verificationForm'); // verification form
 const signUpVerify = document.getElementById('verification'); // button register form
 
+// Verification Form
+async function verifyUser() { 
+  const response = await fetch('/api/user-info');
+  const data = await response.json();
+  return data.email;
+}
+verifyUser().then((email) => {
+  const messageElement = verify.children[1];
+  messageElement.textContent = "The Verification Code is sent to ";
+  messageElement.style.fontFamily = 'Arial';
+  const emailElement = document.createElement('strong');
+  emailElement.textContent = email;
+  emailElement.style.color = 'black';
+  emailElement.style.fontFamily = 'Arial'; 
+  emailElement.style.fontWeight = 'bold';
+  messageElement.appendChild(emailElement);
+});
+
+
 signUpVerify.addEventListener('click', () => { 
   signUpForm.style.display = 'none';
-  verify.style.display = 'flex';
+  verify.style.display = 'grid';
   document.body.classList.add('no-scroll');
   window.history.pushState({}, '', '/home/verifyId123');
 });
@@ -90,7 +109,7 @@ backBtn.addEventListener('click', () => {
 backBtn2.addEventListener('click', () => { 
   verify.style.display = 'none';
   signUpForm.style.display = 'grid';
-  window.history.pushState({}, '', '/home/signUpId6969');
+  window.location.href = '/home/signUpId6969';
 });
 
 if (window.location.pathname === '/home/loginId313') {
@@ -105,7 +124,7 @@ if (window.location.pathname === '/home/signUpId6969') {
   loginForm.style.display = 'flex';
 }
 if (window.location.pathname === '/home/verifyId123') { 
-  verify.style.display = 'flex';
+  verify.style.display = 'grid';
   signUpForm.style.display = 'none';
   login.style.display = 'none';
   loginForm.style.display = 'flex';
@@ -205,13 +224,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const errorMessage = urlParams.get('error');
   document.getElementById('errorEmail').style.display = 'flex';
+  document.getElementById('verificationError').style.display = 'flex';
   if (errorMessage) {
+    // for email
     document.getElementById('errorEmail').textContent = decodeURIComponent(errorMessage);
     document.getElementById('email').style.border = '2px solid red';
     document.getElementById('email').addEventListener('mouseover', () => {
       document.getElementById('email').style.border = '1px solid grey';
       document.getElementById('errorEmail').style.display = 'none';
     });
+    // for Verification
+    document.getElementById('verificationError').textContent = decodeURIComponent(errorMessage)
+    document.getElementById('code').style.border = '2px solid red';
+    document.getElementById('code').addEventListener('mouseover', () => {
+      document.getElementById('code').style.border = '1px solid grey';
+      document.getElementById('verificationError').style.display = 'none';
+    } );
   }
 });
 

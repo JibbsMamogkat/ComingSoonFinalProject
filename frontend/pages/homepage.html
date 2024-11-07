@@ -77,7 +77,11 @@
     </div>
     <form id="verificationForm" action="/verify" method="post">
       <span id="backBtn2" class="close">&gt;</span>
-      <input type="text" name="code" placeholder="Enter verification code" required>
+      <p></p>
+      <div>
+        <input type="text" id="code" name="code" placeholder="Enter 6 Digit Code" required>
+        <p id="verificationError" style="color: red; font-family: Arial; font-size: 15px;"></p>
+      </div>
       <button id="verification" type="submit">Verify</button>
     </form>
   </div>
