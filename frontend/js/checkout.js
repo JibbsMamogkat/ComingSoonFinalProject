@@ -1,8 +1,13 @@
 // Define the user ID (hardcoded for now; in a real app, this would come from session/auth)
-const userId = "671c37a90b61c2029655ec95";
+async function getUserId(){
+    let response = await fetch('/api/user-info');
+    let data = await response.json();
+    return data.userId;
+}
 
 // Function to fetch cart data from the backend
 async function fetchCartData() {
+    const userId = await getUserId();
     try {
         const response = await fetch(`/api/cart/view-cart/${userId}`);
         if (!response.ok) {
