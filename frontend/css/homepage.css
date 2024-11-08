@@ -194,6 +194,21 @@ main {
   max-width: 400px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+.logIn-content > button {
+  margin-top: 10px;
+  background-color: var(--cocoa-brown);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logIn-content > button:hover {
+  background-color: #0056b3;
+}
 #welcomeSign {
   text-decoration: none;
   font-family: 'Arial', sans-serif;
@@ -206,7 +221,7 @@ main {
   font-size: 16px; /* Font size */
   font-weight: bold; /* Makes the text bold */
   cursor: pointer; /* Changes cursor to pointer */
-  transition: background-color 0.3s ease; /* Smooth hover transition */
+  transition: background-color  ease; /* Smooth hover transition */
 }
 
 #welcomeSign:hover {
@@ -217,7 +232,12 @@ main {
 }
 .logIn-content > form {
   grid-area: form;
+
   
+}
+.logIn-content > form > button {
+  background-color: var(--cocoa-brown);
+  margin-bottom: 10px;
 }
 .logIn-content > form > input{
   max-width: 380px;
@@ -285,8 +305,7 @@ form button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 #signUp-content > *:nth-child(odd) {
-  padding: 20px;
-  margin-left: 10px;
+  justify-self: end;
 }
 
 #help {
@@ -306,29 +325,20 @@ form button:hover {
   height: 100%;
   object-fit: cover;
 }
-
-
 #logo {
   grid-area: logo;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  border: none;
-  position: relative;
-  justify-content: center;
-  cursor: pointer;
-  align-items: center;
-  background: linear-gradient(135deg, #d3d3d3, #ffffff, #b0c4de, #4facfe, #d3d3d3, #ffffff);
-  background-size: 400% 400%;
-  animation: waterBackground 4s ease infinite;
+
 }
 #logo > img {
-  height: 35px;
-  width: 35px;
+  position: absolute;
+  top: 0;
+  height: 80px;
+  width: 80px;
   object-fit: cover;
   border-radius: 50%;
 }
-
 
 
 /* for main Homepage*/

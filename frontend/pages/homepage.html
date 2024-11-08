@@ -44,14 +44,16 @@
         <input placeholder="Password" type="password" id="password" name="password">
         <p id="loginErrorPassword" style="color: red; font-family: Arial; font-size: 15px; margin: 0;"></p>
         <button type="submit">Sign In</button>
-        <a href="/forgot">Forgot Password</a>
+        <a href="/forgot" style="font-family: Arial, Helvetica, sans-serif; text-decoration: none; color: grey;">Forgot Password</a>
       </form>
       <button class="signUpHomepage">Sign Up</button>
     </div>
 
     <!-- Sign Up Form Section -->
     <div id="signUp-content">
-      <div id="logo">Pinoy Plates</div>
+      <div id="logo">
+        <img src="/images/icons/Icon.png" alt="">
+      </div>
       <form id="registerForm" action="/signup" method="post">
         <input placeholder="First Name" type="text" id="firstName" name="firstName" required>
         <input placeholder="Last Name" type="text" id="lastName" name="lastName" required>
@@ -76,7 +78,6 @@
         <button id="backBtn" class="close">Sign In</button>
         <p class="textSignUp">Already have an account?</p>
       </form>
-      <a href="" id="help">Help</a>
       <div id="slideShowContainer">
         <img alt="Slideshow" id="Slideshow-image">
       </div>
