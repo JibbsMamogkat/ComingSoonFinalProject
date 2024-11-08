@@ -104,6 +104,20 @@ const findUser = async (req, res) => {
     res.status(500).json({ message: 'An error occurred. Please try again.' });
   }
 };
+/* For Forgot Password
+  const forGotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+      await sendVerificationCode({ body: { email } }, res);
+    } catch (error) {
+      res.status(500).json({ message: 'An error occurred. Please try again.' });
+    }
+  };
+*/
 
 
 module.exports = { createUser, findUser, verifyUser };

@@ -18,7 +18,6 @@ async function day(url) {
   return {dayOfWeek};
 }
 
-
 function updateDateTime() {
   getDateTime("https://worldtimeapi.org/api/timezone/Asia/Manila").then(([ pinoydate, time, minute ]) => {
     if ( parseInt(time) <= 11 && parseInt(minute) < 60) {
@@ -243,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 //----- USER LOGIN GUI -----
 const cartButtonHomepage = document.getElementById('CartButton');
 const myaccountButton = document.getElementById('MyAccount');
@@ -292,6 +290,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+// slideSHOW in signup
+const images = ['/images/menuItems/adobo.jpg', '/images/menuItems/bibingka.jpg', '/images/menuItems/bistektagalog.jpg'];
+let currentIndex = 0;
+
+function showSlide(index) {
+  const imgElement = document.getElementById('Slideshow-image');
+  imgElement.src = images[index];
+}
+function nextSlide() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showSlide(currentIndex);
+}
+
+showSlide(currentIndex);
+
+setInterval(nextSlide, 1500);
 
 /*
 

@@ -151,21 +151,32 @@ form button:hover {
   ;
   align-items: center;
   background-color: white;
-  padding: 20px;
   border-radius: 8px;
   width: 600px;
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+#signUp-content > *:nth-child(odd) {
+  padding: 20px;
+  margin-left: 10px;
+}
+
 #help {
   grid-area:help ;
 }
 
-#errorMessage {
+#slideShowContainer {
   grid-area: errorMessage;
-  color: red;
+  display: grid;
+  grid-template-columns: 1fr;
   margin: 0;
-  margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+}
+#Slideshow-image{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 

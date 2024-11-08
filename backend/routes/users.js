@@ -41,6 +41,6 @@ router.get('/home/signUpId6969', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
 });
 
-router.post('/login', findUser);
+router.post('/login', findUser );
 module.exports = router;
 
