@@ -57,6 +57,10 @@ main {
     padding: 2rem;
 }
 
+main h1, h2 {
+    color: var(--black-olive-2);
+    text-align: center;
+}
 
 /* Menu Sections */
 .menu-section {
