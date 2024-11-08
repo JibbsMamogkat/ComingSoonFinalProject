@@ -22,7 +22,7 @@
       <h5><span>|</span> Opens Monday-Saturday: 5am-8pm</h5>
     </div>
     <div id="account" style="padding-right: 1rem;">
-      <button id="CartButton" style="display: none;">Cart</button>
+      <button id="show-cart-button" onclick="goToCart()"> <img src="/images/icons/shopping-cart.png" alt="Cart" class="cart-icon"><span id="cart-count">0</span></button>
       <button id="logIn">
         <img src="../images/icons/logIn.png" alt="for account">
         <p>Sign In</p>
@@ -194,8 +194,10 @@
     </div>
   </footer>
   
-
+  
   <!-- JavaScript Files -->
   <script src="../js/homepage.js"></script>
+  <script src="../js/menu.js"></script>
+  
 </body>
 </html>

@@ -8,9 +8,6 @@ const jasper = rootStyles.getPropertyValue('--jasper').trim();
 const kobicha = rootStyles.getPropertyValue('--kobicha').trim();
 const blackOlive2 = rootStyles.getPropertyValue('--black-olive-2').trim();
 
-
-
-
 // for the TIME, DATE and DAY
 let timeAndDate = document.querySelector('#dateTime .dateTime');
 
@@ -225,7 +222,7 @@ registerForm.addEventListener('submit', (e) => {
   } 
 
 });
-// Handling Errors 
+// Handling Errors Via Backend
 document.addEventListener('DOMContentLoaded', () => { 
   const urlParams = new URLSearchParams(window.location.search);
   const errorMessage = urlParams.get('error');
@@ -264,12 +261,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('loginErrorPassword').style.display = 'none';
       });
     }
-
   }
 });
 
 //----- USER LOGIN GUI -----
-const cartButtonHomepage = document.getElementById('CartButton');
+const cartButtonHomepage = document.getElementById('show-cart-button');
 const myaccountButton = document.getElementById('MyAccount');
 const logoutButton = document.getElementById('logOut');
 

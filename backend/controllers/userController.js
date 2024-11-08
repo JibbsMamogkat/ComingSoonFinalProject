@@ -120,7 +120,7 @@ const findEmail = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.redirect(`/forgot?error=${encodeURIComponent('Email not found.')}`);
     }
     req.session.userId = user._id; 
     req.session.email = email; // Store email in session for later use
@@ -157,7 +157,7 @@ const verifyCode = async (req, res) => {
   try {
     const verificationCode = verificationCodes[email];
     if (!verificationCode || verificationCode !== parseInt(code)) {
-      return res.status(401).json({ message: 'Incorrect code' });
+      return res.redirect(`/verifyEmail?error=${encodeURIComponent('Incorrect Code.')}`);
     }
     delete verificationCodes[email];
     res.redirect('/forgotPassword');

@@ -16,6 +16,49 @@ html, body {
   margin: 0;
   padding: 0;
 }
+#show-cart-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and count */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white; /* Cocoa brown color */
+  border: none;
+  cursor: pointer;
+  animation: waterBackground 4s ease infinite;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--black-olive); /* Alert color for count */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+#show-cart-button:hover {
+  background-color: var(--jasper); /* Change color on hover */
+  transform: scale(1.05); /* Slight scale effect */
+}
 
 main {
   flex: 1; /* This makes the main content take up available space */
