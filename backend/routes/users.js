@@ -1,4 +1,4 @@
-const {createUser, findUser, verifyUser} = require('../controllers/userController.js');
+const {createUser, findUser, verifyUser, findEmail, verifyCode, updatePassword} = require('../controllers/userController.js');
 const path = require('path');
 
 const express = require('express');
@@ -41,6 +41,24 @@ router.get('/home/signUpId6969', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
 });
 
-router.post('/login', findUser );
+router.post('/login', findUser);
+
+
+// newest
+router.post('/forgotPassword', findEmail);
+router.get('/forgot', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/pages/forgot-password.html'));
+});
+
+router.post('/verifyCode', verifyCode );
+router.get('/verifyEmail', (req, res) =>{
+  res.sendFile(path.join(__dirname, '../../frontend/pages/verify-code.html'));
+});
+
+
+router.get('/forgotPassword', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/pages/reset-password.html'));
+});
+router.post('/updatePassword',  updatePassword);
 module.exports = router;
 
