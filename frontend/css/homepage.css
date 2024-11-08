@@ -29,7 +29,7 @@ main {
   position: fixed;
   width: 100%;
   background-color: transparent;
-  z-index: 1;
+  z-index: 100;
 }
 #dateTime {
   display: flex;
@@ -61,7 +61,6 @@ main {
   background-size: 400% 400%;
   animation: waterBackground 4s ease infinite;
   /*
-
   position: relative;
   background-color: transparent;
   border: none;
@@ -124,9 +123,9 @@ main {
 
 /* for loginform */
 #loginForm {
-  display: none; 
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 101; 
   left: 0;
   top: 0;
   width: 100vw; 
@@ -136,17 +135,32 @@ main {
   align-items: center; 
 
 }
-
 .logIn-content {
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas: 
+  "logo close"
+  "form form"
+  "signUp signUp"
+  ;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   width: 90%;
   max-width: 400px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.signUpHomepage {
+  grid-area: signUp;
+}
+.logIn-content > form {
+  grid-area: form;
 }
 
 .close {
+  grid-area: close;
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -223,6 +237,7 @@ form button:hover {
 
 
 #logo {
+  grid-area: logo;
   width: 50px;
   height: 50px;
   border-radius: 50%;

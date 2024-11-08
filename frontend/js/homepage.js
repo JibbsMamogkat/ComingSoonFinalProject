@@ -314,6 +314,35 @@ const imgElement = document.createElement('img');
 imgElement.src = '../images/icons/Icon.png'; // Replace with your image path
 logoDiv.appendChild(imgElement);
 
+document.addEventListener('scroll', () => {
+  const headerContainer = document.getElementById('headerHome');
+  const welcomeOne = document.getElementById('welcomeOne');
+  const welcomeTwo = document.getElementById('welcomeTwo');
+  
+  if (window.scrollY > 1) {
+    headerContainer.style.backgroundColor = 'blue';
+    welcomeOne.style.opacity = '0';
+    welcomeTwo.style.opacity = '0';
+    
+    // Add pop animation one time only
+    if (!headerContainer.classList.contains('popped')) {
+      headerContainer.style.transition = 'transform 0.3s ease-in-out';
+      headerContainer.style.transform = 'scale(1.1)';
+      headerContainer.classList.add('popped');
+    }
+    setTimeout(() => {
+      headerContainer.style.transform = 'scale(1)';
+    }, 300);
+  } else {
+    headerContainer.style.backgroundColor = '';
+    welcomeOne.style.opacity = '1';
+    welcomeTwo.style.opacity = '1';
+    headerContainer.classList.remove('popped');
+  }
+    setTimeout(() => {
+      headerContainer.style.transform = 'scale(1)';
+    }, 300);
+});
 
 
 /*

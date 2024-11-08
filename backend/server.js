@@ -5,6 +5,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const path = require('path');
 const userRoutes = require('./routes/users.js');
+const pages = require('./routes/pages.js');
 
 const MenuItem = require('./models/menuItemSchema');
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // True allows Us to handle complex objects and nested data 
 
 app.use('', userRoutes);
+app.use('', pages);
 
 // Serve static files from the root or `frontend` folder
 app.use(express.static('frontend')); // Adjust the path if needed

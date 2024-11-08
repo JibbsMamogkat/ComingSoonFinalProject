@@ -32,7 +32,14 @@ router.get('/home', (req, res) => {
 }); 
 
 router.get('/api/user-info', (req, res) => {
-  res.json({ userId: req.session.userId , email: req.session.email});
+  res.json({ 
+    userId: req.session.userId , 
+    email: req.session.email,
+    firstName: req.session.firstName,
+    lastName: req.session.lastName,
+    phoneNumber: req.session.phoneNumber,
+    address: req.session.address
+  });
 });
 router.get('/home/loginId313', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
