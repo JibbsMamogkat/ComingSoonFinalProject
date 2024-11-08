@@ -6,7 +6,7 @@
     /* Color palette */
     --cocoa-brown: hsla(29, 85%, 44%, 1);
     --black-olive: hsla(138, 12%, 17%, 1);
-    --jasper: hsla(8, 61%, 54%, 1);
+    --jasper: hsla(8, 61%, 80%, 1);
     --kobicha: hsla(29, 47%, 30%, 1);
     --black-olive-2: hsla(146, 15%, 21%, 1);
   }
@@ -22,9 +22,13 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
+    background-image: url('../images/forhomepage/homepagewelcomebackground.jpg'); /* Update the path as needed */
+    background-size: cover; /* Makes the image cover the entire header */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repeating the image */
+    color: white; /* Adjusts text color for visibility */
+    padding: 20px; /* Adds padding for spacing */
+    min-height: 30vh; /* Sets a minimum height for the header */
 }
 
 header nav ul {
@@ -53,15 +57,6 @@ main {
     padding: 2rem;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
 
 /* Menu Sections */
 .menu-section {
@@ -76,7 +71,7 @@ footer {
 }
 /* menu nav bar */
 .menu-nav {
-    background-color: #fff; /* Change color as needed */
+    background-color: var(--jasper); 
     border-bottom: 1px solid #ddd;
     padding: 1rem 2rem;
     display: flex;
@@ -170,3 +165,75 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* FOOTER */
+.footer {
+    position: static;
+    background-color: var(--black-olive);
+    color: #fff;
+    padding: 2rem 1rem;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer-section h3 {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-logo {
+    max-width: 150px;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-apps img {
+    width: 120px;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .social-icons a {
+    color: #fff;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .social-icons a:hover {
+    color: #ddd;
+  }
