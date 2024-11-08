@@ -201,7 +201,13 @@ function handleCartError(error) {
 
 // Show cart button
 function goToCart() {
-    window.location.href = '/cart'; 
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('You need to log in to view your cart.');
+        window.location.href = '/home/loginId313';
+    } else {
+        window.location.href = '/cart';
+    }
 }
 
 // Function to fetch cart data for the cart count
