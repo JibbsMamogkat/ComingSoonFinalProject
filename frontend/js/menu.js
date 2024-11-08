@@ -48,7 +48,7 @@ async function getUserId() {
         let body = await response.json();
         let { userId } = body;
         if (userId) {
-            sessionStorage.setItem('userId', userId);
+            localStorage.setItem('userId', userId);
         }
         return userId;
     } catch (error) {
@@ -124,7 +124,7 @@ function handleError(error) {
 
 // Main function to add an item to the cart
 async function addToCart(itemId, itemName, itemPrice) {
-    const userId = sessionStorage.getItem('userId'); //added duff
+    const userId = localStorage.getItem('userId'); //added duff
 
     // Check if the user is logged in
     if (!userId) {

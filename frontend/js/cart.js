@@ -5,15 +5,25 @@ let totalAmount = 0;
 // Initialize the cart when the page loads
 document.addEventListener('DOMContentLoaded', loadCart);
 //Duff added function blame
-async function getUserId(){
-    let response = await fetch('/api/user-info');
-    let data = await response.json();
-    return data.userId;
+// Duff added this retrieves user ID from the server and stores it in localStorage
+async function getUserId() {
+    try {
+        let response = await fetch('/api/user-info');
+        let body = await response.json();
+        let { userId } = body;
+        if (userId) {
+            localStorage.setItem('userId', userId);
+        }
+        return userId;
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        throw error;
+    }
 }
 
 // Load cart data from the backend
 async function loadCart() {
-    const userId = await getUserId(); // Duff add await
+    const userId = localStorage.getItem('userId'); // Duff add await
     const cart = await fetchCartData(userId);
     updateCartState(cart.items);
     renderCart();
@@ -102,7 +112,7 @@ function updateCartItemQuantity(itemId, quantity) {
 
 // Sync updated quantity with the backend
 async function syncCartItemQuantityWithBackend(itemId, quantity, price) {
-    const userId = await getUserId(); // Duff add await
+    const userId = localStorage.getItem('userId');// Duff add await
     await fetch('/api/cart/update-cart', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -120,7 +130,7 @@ function setupRemoveButton(row, item) {
 
 // Remove an item from the cart
 async function removeFromCart(itemId, price) {
-    const userId = await getUserId(); // Duff add await
+    const userId = localStorage.getItem('userId'); // Duff add await
     updateCartStateAfterRemoval(itemId);
     await syncCartItemRemovalWithBackend(itemId, userId, price);
     renderCart();
@@ -156,7 +166,7 @@ function clearCartState() {
 
 // Sync cart clearing with the backend
 async function syncCartClearWithBackend() {
-    const userId = await getUserId(); // Duff add await
+    const userId = localStorage.getItem('userId'); // Duff add await
     await fetch(`/api/cart/clear-cart/${userId}`, { method: 'DELETE' });
 }
 
