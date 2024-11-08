@@ -147,9 +147,13 @@ async function addToCart(itemId, itemName, itemPrice) {
         // Update cart count in the UI immediately
         incrementCartCount();
 
+        console.log('incremented cart count');
+
         // Optionally, fetch the updated cart data to ensure accuracy
         const cartData = await fetchCartData(userId);
         const cartCount = cartData.items.reduce((total, item) => total + item.quantity, 0);
+
+        console.log('cart count from fetched data from backend:', cartCount);
         updateCartCount(cartCount);
 
     } catch (error) {
