@@ -58,6 +58,12 @@ function goToCart() {
 
 // Confirm checkout
 function confirmCheckout() {
+    //check if user is logged in
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('Please log in to proceed to checkout.');
+        return;
+    }
     alert('Checkout confirmed! Proceeding to order processing.');
     // You could add further logic here, like redirecting to a confirmation page
     // or sending the final cart details to your backend.
