@@ -28,7 +28,7 @@ header {
 header nav ul {
     list-style: none; /* Remove default list style */
     padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    margin: 20px; /* Remove margin */
     display: flex; /* Use flexbox for horizontal layout */
     justify-content: center; /* Center items in nav */
 }

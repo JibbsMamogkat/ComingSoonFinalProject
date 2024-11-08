@@ -307,6 +307,15 @@ showSlide(currentIndex);
 
 setInterval(nextSlide, 1500);
 
+/*frontEND: */
+
+const logoDiv = document.getElementById('welcomeLogo');
+const imgElement = document.createElement('img');
+imgElement.src = '../images/icons/Icon.png'; // Replace with your image path
+logoDiv.appendChild(imgElement);
+
+
+
 /*
 
 // for the TIME, DATE and DAY

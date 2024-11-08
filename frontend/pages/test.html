@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Effect Logo</title>
+  <style>
+    /* Style for the water-like background */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    #logo {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #d3d3d3, #ffffff, #b0c4de, #4facfe, #d3d3d3, #ffffff);
+      background-size: 400% 400%;
+      animation: waterBackground 8s ease infinite;
+    }
+
+    /* Image styling to fit inside the smaller logo */
+    #logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* Keyframes for water-like background movement */
+    @keyframes waterBackground {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 50% 100%; }
+      50% { background-position: 100% 50%; }
+      75% { background-position: 50% 0%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="logo"><img src="../images/icons/logIn.png" alt="Logo"></div>
+</body>
+</html>
