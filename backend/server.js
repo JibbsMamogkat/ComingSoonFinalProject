@@ -93,6 +93,11 @@ app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/pages/checkout.html'));
 });
 
+//serve aboutus page
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/pages/about.html'));
+});
+
 // Serve static files from the 'pages' folder
 app.use(express.static(path.join(__dirname, '../frontend/pages')));
 

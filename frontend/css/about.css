@@ -1,23 +1,33 @@
 /* General Styling */
+:root {
+  /* Enhanced color palette */
+  --cocoa-brown: hsla(29, 70%, 40%, 1);      /* Warmer, deeper brown */
+  --black-olive: hsla(138, 8%, 20%, 1);      /* Slightly darker olive */
+  --jasper: hsla(8, 70%, 55%, 1);            /* Richer red for accents */
+  --kobicha: hsla(29, 47%, 35%, 1);          /* More saturated dark brown */
+  --black-olive-2: hsla(146, 10%, 25%, 1);   /* Deeper olive green */
+  --cream: hsla(40, 50%, 95%, 1);            /* Soft cream background */
+  --accent-yellow: hsla(48, 100%, 50%, 1);   /* Accent for buttons and links */
+}
 body {
     font-family: Arial, sans-serif; /* Font style */
     margin: 0; /* Remove default margin */
     padding: 0; /* Remove default padding */
-    background-color: #f5f5f5; /* Background color */
+    background-color: gray; /* Background color */
     color: #333; /* Text color */
     display: flex; /* Use flexbox for layout */
     flex-direction: column; /* Stack elements vertically */
 }
 
 header {
-    background-color: #555; /* Header background color */
+    background-color: var(--black-olive); /* Header background color */
     padding: 10px 0; /* Padding for header */
 }
 
 header nav ul {
     list-style: none; /* Remove default list style */
     padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+    margin: 10; /* Remove margin */
     display: flex; /* Use flexbox for horizontal layout */
     justify-content: center; /* Center items in nav */
 }
@@ -46,6 +56,19 @@ header nav ul li a.active {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
     text-align: center; /* Center text in section */
 }
+.about-background-img {
+  position: absolute;
+  top: 50%;      /* Position the center of the image at the center of the viewport vertically */
+  left: 50%;     /* Position the center of the image at the center of the viewport horizontally */
+  width: 90%;   /* Control the image size by viewport width */
+  height: 130%;  /* Control the image size by viewport height */
+  object-fit: cover;
+  transform: translate(-50%, -50%); /* Shift the image back by half of its own size to center it */
+  z-index: -1;   /* Keeps it in the background */
+  opacity: 20;  /* Optional: slight transparency */
+}
+
+
 
 .about-us h1 {
     color: #00796b; /* Heading color */
@@ -75,13 +98,86 @@ header nav ul li a.active {
     color: #444; /* Color for intro text */
 }
 
-/* Footer */
-footer {
-    background-color: #555; /* Footer background color */
-    color: white; /* Footer text color */
-    text-align: center; /* Center text in footer */
-    padding: 10px; /* Padding for footer */
-    position: fixed; /* Fixed footer */
-    bottom: 0; /* Position at bottom */
-    width: 100%; /* Full width footer */
+.footer-logo {
+    width: 150px; /* Example size */
+    height: auto; /* Maintain aspect ratio */
+    margin: 10px 0; /* Adds some spacing */
 }
+
+/* Footer */
+/* General Footer Styling */
+.footer {
+    background-color: #555; /* Matches header color */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: static; /* Change to fixed if you want it to stay at the bottom */
+    width: 100%;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around; /* Spaced layout for sections */
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 5px;
+  }
+  
+  .footer-section ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-logo {
+    max-width: 150px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-apps img {
+    width: 120px;
+    margin: 10px;
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  
+  .social-icons a {
+    color: white;
+    margin-right: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .social-icons a:hover {
+    color: #ddd;
+  }
+  
