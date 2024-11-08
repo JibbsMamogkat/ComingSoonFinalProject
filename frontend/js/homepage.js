@@ -78,12 +78,6 @@ signUpVerify.addEventListener('click', () => {
   window.history.pushState({}, '', '/home/verifyId123');
 });
 
-loginButton.addEventListener('click', () => {
-  loginForm.style.display = 'flex'; 
-  document.body.classList.add('no-scroll');
-  window.history.pushState({}, '', '/home/loginId313');
-  
-});
 
 closeBtn.addEventListener('click', () => {
   loginForm.style.display = 'none';
@@ -100,7 +94,7 @@ signUpButton.addEventListener('click', () => {
 });
 
 backBtn.addEventListener('click', () => {
-  login.style.display = 'flex';
+  login.style.display = 'grid';
   signUpForm.style.display = 'none';
   signUpFormInput.reset();
   window.history.pushState({}, '', '/home/loginId313');
@@ -112,7 +106,7 @@ backBtn2.addEventListener('click', () => {
 });
 
 if (window.location.pathname === '/home/loginId313') {
-  login.style.display = 'flex';
+  login.style.display = 'grid';
   signUpForm.style.display = 'none';
   loginForm.style.display = 'flex'; 
 }
@@ -224,6 +218,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const errorMessage = urlParams.get('error');
   document.getElementById('errorEmail').style.display = 'flex';
   document.getElementById('verificationError').style.display = 'flex';
+  document.getElementById('loginErrorEmail').style.display = 'flex';
+  document.getElementById('loginErrorPassword').style.display = 'flex';
   if (errorMessage) {
     // for email
     document.getElementById('errorEmail').textContent = decodeURIComponent(errorMessage);
@@ -239,6 +235,23 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('code').style.border = '1px solid grey';
       document.getElementById('verificationError').style.display = 'none';
     } );
+    // for login
+    if (errorMessage === 'User not found.') {
+      document.getElementById('loginErrorEmail').textContent = decodeURIComponent(errorMessage);
+      document.getElementById('useroremail').style.border = '2px solid red';
+      document.getElementById('useroremail').addEventListener('mouseover', () => {
+        document.getElementById('useroremail').style.border = '1px solid grey';
+        document.getElementById('loginErrorEmail').style.display = 'none';
+      });
+    } else if (errorMessage === 'Invalid credentials.') {
+      document.getElementById('loginErrorPassword').textContent = decodeURIComponent(errorMessage);
+      document.getElementById('password').style.border = '2px solid red';
+      document.getElementById('password').addEventListener('mouseover', () => {
+        document.getElementById('password').style.border = '1px solid grey';
+        document.getElementById('loginErrorPassword').style.display = 'none';
+      });
+    }
+
   }
 });
 
@@ -246,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const cartButtonHomepage = document.getElementById('CartButton');
 const myaccountButton = document.getElementById('MyAccount');
 const logoutButton = document.getElementById('logOut');
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch the home page content
@@ -256,6 +270,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loginButtonImg = document.querySelector('#logIn img');
     let isClickTimes = true;
     if (isLoggedIn) {
+      const welcomeButton = document.getElementById('welcomeButtons');
+      welcomeButton.style.display = 'none';
       cartButtonHomepage.style.display = 'inline-block';
       loginButtonImg.src = "../images/icons/account.png"; // Change to logged-in icon
       loginButton.children[1].remove();
@@ -286,9 +302,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       loginButtonImg.src = "../images/icons/logIn.png"; // Default icon for logged out
       logoutButton.style.display = 'none';
+      // Redirect the user is not logged in
+      loginButton.addEventListener('click', () => {
+        loginForm.style.display = 'flex'; 
+        document.body.classList.add('no-scroll');
+        window.location.href = '/home/loginId313';
+      });
     }
   }
 });
+
+
+
 
 // slideSHOW in signup
 const images = ['/images/menuItems/adobo.jpg', '/images/menuItems/bibingka.jpg', '/images/menuItems/bistektagalog.jpg'];

@@ -87,12 +87,12 @@ const findUser = async (req, res) => {
     // Find the user by email
     const user = await User.findOne({ email: useroremail });
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.redirect(`/home/loginId313?error=${encodeURIComponent('User not found.')}`);
     }
 
     const isMatch = await Bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.redirect(`/home/loginId313?error=${encodeURIComponent('Invalid credentials.')}`);
     }
     req.session.userId = user._id; 
     req.session.email = user.email;

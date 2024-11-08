@@ -138,7 +138,7 @@ main {
 .logIn-content {
   grid-template-columns: 2fr 1fr;
   grid-template-areas: 
-  "logo close"
+  "loginLogo close"
   "form form"
   "signUp signUp"
   ;
@@ -157,10 +157,22 @@ main {
 }
 .logIn-content > form {
   grid-area: form;
+  
+}
+.logIn-content > form > input{
+  max-width: 380px;
+}
+#closeBtn {
+  grid-area: close;
+  justify-self: end;
+}
+.loginLogo{
+  grid-area: loginLogo;
+  justify-self: end;
+  margin-right: 20px;
 }
 
 .close {
-  grid-area: close;
   color: #aaa;
   float: right;
   font-size: 28px;
