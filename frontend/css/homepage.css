@@ -540,7 +540,9 @@ form button:hover {
   margin-top: 5px;
   width: 100px;
   font-size: 10px;
+  background-color: var(--cocoa-brown);
 }
+
 
 #firstName {
   grid-area: firstName;
@@ -638,6 +640,7 @@ form button:hover {
   margin-right: 10px ;
   max-width: 220px;
   margin-top: 5px;
+  background-color: var(--cocoa-brown);
 
 }
 
@@ -691,6 +694,7 @@ form button:hover {
 
 #verification {
   grid-area: verification;
+  background-color: var(--cocoa-brown);
 }
 
 /* for GUI*/
@@ -850,5 +854,4 @@ form button:hover {
   50% { transform: rotate(180deg) scale(1.1); }
   100% { transform: rotate(360deg) scale(1); }
 }
-
 
