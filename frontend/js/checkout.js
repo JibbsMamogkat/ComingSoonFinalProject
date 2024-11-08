@@ -1,13 +1,21 @@
-// Define the user ID (hardcoded for now; in a real app, this would come from session/auth)
-async function getUserId(){
-    let response = await fetch('/api/user-info');
-    let data = await response.json();
-    return data.userId;
+async function getUserId() {
+    try {
+        let response = await fetch('/api/user-info');
+        let body = await response.json();
+        let { userId } = body;
+        if (userId) {
+            localStorage.setItem('userId', userId);
+        }
+        return userId;
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        throw error;
+    }
 }
 
 // Function to fetch cart data from the backend
 async function fetchCartData() {
-    const userId = await getUserId();
+    const userId = localStorage.getItem('userId');
     try {
         const response = await fetch(`/api/cart/view-cart/${userId}`);
         if (!response.ok) {
@@ -45,7 +53,7 @@ function displayCart(cartItems, totalAmount) {
 
 // Redirect to the cart page
 function goToCart() {
-    window.location.href = 'cart.html';
+    window.location.href = '/cart';
 }
 
 // Confirm checkout
