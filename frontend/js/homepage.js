@@ -1,3 +1,16 @@
+// Retrieve the root styles
+const rootStyles = getComputedStyle(document.documentElement);
+
+// Get each color value
+const cocoaBrown = rootStyles.getPropertyValue('--cocoa-brown').trim();
+const blackOlive = rootStyles.getPropertyValue('--black-olive').trim();
+const jasper = rootStyles.getPropertyValue('--jasper').trim();
+const kobicha = rootStyles.getPropertyValue('--kobicha').trim();
+const blackOlive2 = rootStyles.getPropertyValue('--black-olive-2').trim();
+
+
+
+
 // for the TIME, DATE and DAY
 let timeAndDate = document.querySelector('#dateTime .dateTime');
 
@@ -345,7 +358,7 @@ document.addEventListener('scroll', () => {
   const welcomeTwo = document.getElementById('welcomeTwo');
   
   if (window.scrollY > 1) {
-    headerContainer.style.backgroundColor = 'blue';
+    headerContainer.style.backgroundColor = blackOlive2;
     welcomeOne.style.opacity = '0';
     welcomeTwo.style.opacity = '0';
     

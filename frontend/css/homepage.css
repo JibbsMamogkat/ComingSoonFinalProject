@@ -151,7 +151,24 @@ main {
   max-width: 400px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+#welcomeSign {
+  text-decoration: none;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--cocoa-brown); /* Button background color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Spacing around text */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  display: inline-block; /* Makes it respect padding like a button */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Makes the text bold */
+  cursor: pointer; /* Changes cursor to pointer */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
 
+#welcomeSign:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
 .signUpHomepage {
   grid-area: signUp;
 }
