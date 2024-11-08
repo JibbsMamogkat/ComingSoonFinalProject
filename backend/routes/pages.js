@@ -13,4 +13,7 @@ router.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/pages/checkout.html'));
 });
 
+router.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/pages/adminpage.html'));
+});
 module.exports = router;
