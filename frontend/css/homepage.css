@@ -1,3 +1,26 @@
+/* color palette */
+
+:root {
+  /* Color palette */
+  --cocoa-brown: hsla(29, 85%, 44%, 1);
+  --black-olive: hsla(138, 12%, 17%, 1);
+  --jasper: hsla(8, 61%, 54%, 1);
+  --kobicha: hsla(29, 47%, 30%, 1);
+  --black-olive-2: hsla(146, 15%, 21%, 1);
+}
+
+html, body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  flex: 1; /* This makes the main content take up available space */
+}
+
 #headerHome {
   display: flex;
   justify-content: space-between;
@@ -193,15 +216,16 @@ form button:hover {
 .homepage {
   display: grid;
   grid-template-columns: 1fr;
-  min-height: 80rem;
+  min-height: 50rem;
 }
 
 
 /* FIRST SECTION*/
 
 #welcome {
+  min-height: 20em;
   position: relative;
-  background-image: linear-gradient(rgba(10, 10, 2, 0.85), rgba(10, 10, 2, 0.85)), url("../images/forhomepage/homepagewelcomebackground.jpg");
+  background-image: linear-gradient(rgba(10, 10, 2, 0.85), rgba(10, 10, 2, 0.85)), url("../images/forhomepage/homepagewelcomebackground2.jpg");
   background-size: cover;
   background-position: center;
   display: grid;
@@ -219,6 +243,7 @@ form button:hover {
   grid-area: HomeOthers;
   position: absolute;
   bottom: 10px;
+  z-index: 2;
 }
 #welcomeOne > a {
   margin-right: 20px;
@@ -259,10 +284,51 @@ form button:hover {
 }
 
 /* for SECOND SECTION */
-#menu {
-  background-color: lightsalmon;
-  height: 10vh;
+
+.menu-section {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
+
+.menu-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.menu-item {
+  width: 280px; /* Adjust width as needed */
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.menu-item img {
+  width: 100%;
+  height: 180px; /* Adjust height for uniformity */
+  object-fit: cover; /* Ensures the image fits properly */
+  border-bottom: 1px solid #ddd;
+}
+
+.menu-item h3 {
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* For registration form */
+
 #registerForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -466,5 +532,76 @@ form button:hover {
   opacity: 1;
 }
 
+/* FOOTER */
+.footer {
+  position: static;
+  background-color: var(--black-olive);
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 1rem;
+}
+
+.footer-apps img {
+  width: 120px;
+  margin-bottom: 1rem;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+.social-icons a {
+  color: #fff;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+  color: #ddd;
+}
 
 

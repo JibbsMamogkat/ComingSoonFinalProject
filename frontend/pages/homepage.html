@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta Information -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pinoy Plates</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <link rel="stylesheet" href="../css/homepage.css">
 </head>
 <body style="margin: 0;">
+
+  <!-- Header Section -->
   <header id="headerHome">
     <div id="logo"></div>
     <div id="dateTime">
@@ -16,65 +23,67 @@
     </div>
     <div id="account" style="padding-right: 1rem;">
       <button id="CartButton" style="display: none;">Cart</button>
-      <button id="logIn"><img src="../images/icons/logIn.png" alt="for account">
+      <button id="logIn">
+        <img src="../images/icons/logIn.png" alt="for account">
         <p>Sign In</p>
         <button id="MyAccount">My account</button>
-        <button id="logOut" > Log Out</button>
+        <button id="logOut">Log Out</button>
       </button>
     </div>
   </header>
+  <!-- Login Form Section -->
   <div id="loginForm">
     <div class="logIn-content">
-        <span id="closeBtn" class="close">&times;</span>
-        <div id="logo">
+      <span id="closeBtn" class="close">&times;</span>
+      <div id="logo"></div>
+      <form action="/login" method="post">
+        <input placeholder="Email or Username" type="text" id="useroremail" name="useroremail">
+        <input placeholder="Password" type="password" id="password" name="password">
+        <button type="submit">Sign In</button>
+        <a href="">Forgot Password</a>
+        <div>
+          <button>Log In via Facebook</button>
+          <button>Log In via Google</button>
         </div>
-        <form action="/login" method="post">
-            <input placeholder="Email or Username" type="text" id="useroremail" name="useroremail" >
-            <input placeholder="Password" type="password" id="password" name="password" >
-            <button type="submit">Sign In</button>
-            <a href="/forgot"> Forgot Password</a>
-            <div>
-              <button>Log In via Facebook</button>
-              <button>Log In via Google</button>
-            </div>
-            <a href="">help</a>
-        </form>
-        <button class="signUpHomepage">Sign Up</button>
-    </div>
-    <div id="signUp-content">
-
-      <div id="logo">
-        Pinoy Plates
-      </div>
-      <form id="registerForm" action="/signup" method="post">
-          <input placeholder="First Name" type="text" id="firstName" name="firstName" required>
-          <input placeholder="Last Name" type="text" id="lastName" name="lastName" required>
-          <div id="containerEmail">
-            <input placeholder="Email" type="email" id="email" name="email" required>
-            <p id="errorEmail"></p>
-          </div>
-          <div id="containerPhone">
-            <input placeholder="Phone Number" type="tel" id="phoneNumber" name="phoneNumber" required>
-            <p id="errorPhone"></p>
-          </div>
-          <input placeholder="address" type="text" id="address" name="address" required>
-          <div id="containerPassword">
-            <input placeholder="Password" type="password" id="passwordSignUp" name="passwordSignUp" required>
-            <p id="errorPassword"></p>
-          </div>
-          <div id="containerConfirm">
-            <input placeholder="Confirm Password" type="password" id="confirmPassword" name="confirmPassword" required>
-            <p id="errorConfirmPassword"></p>
-          </div>
-          <button id="signupClick" type="submit">Register</button>
-          <button id="backBtn" class="close">Sign In</button>
-          <p class="textSignUp">Already have an account ?</p>
+        <a href="">Help</a>
       </form>
-      <a href="" id="help">help</a>
+      <button class="signUpHomepage">Sign Up</button>
+    </div>
+
+    <!-- Sign Up Form Section -->
+    <div id="signUp-content">
+      <div id="logo">Pinoy Plates</div>
+      <form id="registerForm" action="/signup" method="post">
+        <input placeholder="First Name" type="text" id="firstName" name="firstName" required>
+        <input placeholder="Last Name" type="text" id="lastName" name="lastName" required>
+        <div id="containerEmail">
+          <input placeholder="Email" type="email" id="email" name="email" required>
+          <p id="errorEmail"></p>
+        </div>
+        <div id="containerPhone">
+          <input placeholder="Phone Number" type="tel" id="phoneNumber" name="phoneNumber" required>
+          <p id="errorPhone"></p>
+        </div>
+        <input placeholder="Address" type="text" id="address" name="address" required>
+        <div id="containerPassword">
+          <input placeholder="Password" type="password" id="passwordSignUp" name="passwordSignUp" required>
+          <p id="errorPassword"></p>
+        </div>
+        <div id="containerConfirm">
+          <input placeholder="Confirm Password" type="password" id="confirmPassword" name="confirmPassword" required>
+          <p id="errorConfirmPassword"></p>
+        </div>
+        <button id="signupClick" type="submit">Register</button>
+        <button id="backBtn" class="close">Sign In</button>
+        <p class="textSignUp">Already have an account?</p>
+      </form>
+      <a href="" id="help">Help</a>
       <div id="slideShowContainer">
-       <img  alt="Slideshow" id="Slideshow-image">
+        <img alt="Slideshow" id="Slideshow-image">
       </div>
     </div>
+
+    <!-- Verification Form Section -->
     <form id="verificationForm" action="/verify" method="post">
       <span id="backBtn2" class="close">&gt;</span>
       <p></p>
@@ -85,15 +94,17 @@
       <button id="verification" type="submit">Verify</button>
     </form>
   </div>
+
+  <!-- Main Content Section -->
   <main class="homepage">
+    <!-- Welcome Section -->
     <section id="welcome">
       <div id="welcomeOne">
         <a href="">Home</a>
         <a href="/menu">Menu</a>
         <a href="">About Us</a>
       </div>
-      <div id="weldomeLogo">
-      </div>
+      <div id="weldomeLogo"></div>
       <div id="welcomeTwo">
         <a href="/menu">Order</a>
         <a href="">Contact</a>
@@ -107,13 +118,77 @@
         <button id="welcomeSignUp">Sign Up</button>
       </div>
     </section>
-    <section id="menu">
 
+    <!-- Menu Section -->
+    <section class="menu-section">
+      <h2>Explore Our Menu</h2>
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="../images/menuItems/kwek-kwek.jpg" alt="Appetizers">
+          <h3>Appetizers</h3>
+        </div>
+        <div class="menu-item">
+          <img src="../images/menuItems/bulalo.jpg" alt="Main Courses">
+          <h3>Main Courses</h3>
+        </div>
+        <div class="menu-item">
+          <img src="../images/menuItems/halohalo.jpg" alt="Desserts">
+          <h3>Desserts</h3>
+        </div>
+      </div>
+    </section>
     </section>
   </main>
-  <footer>
 
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <img src="../images/icons/Icon.png" alt="Company Logo" class="footer-logo">
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">Our Menu</a></li>
+          <li><a href="#">Online Exclusives</a></li>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Franchising</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Find a Location</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Policies</h3>
+        <ul>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section footer-apps">
+        <a href="#"><img src="../images/app-store.png" alt="App Store"></a>
+        <a href="#"><img src="../images/google-play.png" alt="Google Play"></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Version 1.16.131</p>
+      <div class="social-icons">
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-youtube"></i></a>
+      </div>
+    </div>
   </footer>
+  
+
+  <!-- JavaScript Files -->
   <script src="../js/homepage.js"></script>
 </body>
 </html>

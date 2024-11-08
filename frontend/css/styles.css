@@ -1,3 +1,14 @@
+/* color palette */
+
+:root {
+    /* Color palette */
+    --cocoa-brown: hsla(29, 85%, 44%, 1);
+    --black-olive: hsla(138, 12%, 17%, 1);
+    --jasper: hsla(8, 61%, 54%, 1);
+    --kobicha: hsla(29, 47%, 30%, 1);
+    --black-olive-2: hsla(146, 15%, 21%, 1);
+  }
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
