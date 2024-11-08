@@ -11,13 +11,22 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
+                <li><a href="homepage.html">Home</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
+
+    <nav class="menu-nav">
+        <ul>
+          <li><a href="#appetizers">Appetizers</a></li>
+          <li><a href="#main-courses">Main Courses</a></li>
+          <li><a href="#desserts">Desserts</a></li>
+        </ul>
+      </nav>
+      
     
     <main>
         <h1>Our Menu</h1>
@@ -25,26 +34,26 @@
         <button id="show-cart-button" onclick="goToCart()">View Cart (<span id="cart-count">0</span>)</button>
 
         <!-- Appetizers Section -->
-        <section class="menu-section">
+        <section class="menu-section" id="#appetizers">
             <h2>Appetizers</h2>
             <div id="appetizers-container" class="menu-grid"></div>
         </section>
         
         <!-- Main Courses Section -->
-        <section class="menu-section">
+        <section class="menu-section" id="#main-courses">
             <h2>Main Courses</h2>
             <div id="mains-container" class="menu-grid"></div>
         </section>
         
         <!-- Desserts Section -->
-        <section class="menu-section">
+        <section class="menu-section" id="#desserts">
             <h2>Desserts</h2>
             <div id="desserts-container" class="menu-grid"></div>
         </section>
     </main>
     
     <footer>
-        <p>&copy; 2023 YPino</p>
+        <p>2024 Pinoy Plates</p>
     </footer>
 
     <script src="../js/menu.js"></script> <!-- Include your JavaScript file here -->
