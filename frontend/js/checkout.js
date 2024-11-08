@@ -65,8 +65,15 @@ function confirmCheckout() {
         return;
     }
     alert('Checkout confirmed! Proceeding to order processing.');
-    // You could add further logic here, like redirecting to a confirmation page
-    // or sending the final cart details to your backend.
+    syncCartClearWithBackend();
+    // Redirect to the home page after checkout
+    window.location.href = '/home';
+}
+
+// Sync cart clearing with the backend
+async function syncCartClearWithBackend() {
+    const userId = localStorage.getItem('userId'); // Duff add await
+    await fetch(`/api/cart/clear-cart/${userId}`, { method: 'DELETE' });
 }
 
 // Fetch and display cart data on page load
