@@ -41,6 +41,7 @@ router.get('/api/user-info', (req, res) => {
     address: req.session.address
   });
 });
+
 router.get('/home/loginId313', (req, res) => { 
   res.sendFile(path.join(__dirname, '../../frontend/pages/homepage.html'));
  });
@@ -51,7 +52,7 @@ router.get('/home/signUpId6969', (req, res) => {
 router.post('/login', findUser);
 
 
-// newest
+// newest password reset
 router.post('/forgotPassword', findEmail);
 router.get('/forgot', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/pages/forgot-password.html'));
@@ -67,5 +68,8 @@ router.get('/forgotPassword', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/pages/reset-password.html'));
 });
 router.post('/updatePassword',  updatePassword);
+
+
+
 module.exports = router;
 

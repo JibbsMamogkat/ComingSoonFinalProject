@@ -565,8 +565,13 @@ form button:hover {
 
 #verificationForm {
   display: none;
-  position: relative;
   grid-template-columns: 1fr;
+  grid-template-areas: 
+  "backBtn2"
+  "emailSentTo"
+  "verifyCode"
+  "verification"  
+  ;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -574,14 +579,22 @@ form button:hover {
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
+#backBtn2 {
+  grid-area: backBtn2;
+}
+#verificationForm > p {
+  grid-area: emailSentTo;
+}
 #verificationForm > div {
   display: flex;
+  grid-area: verifyCode;
 }
+
 #verificationForm > div > input {
   width: 200px;
   margin-right: 5px;
 }
-
 
 #verificationForm > div > {
   justify-content: center;
@@ -594,6 +607,9 @@ form button:hover {
   cursor: pointer;
 }
 
+#verification {
+  grid-area: verification;
+}
 
 /* for GUI*/
 
