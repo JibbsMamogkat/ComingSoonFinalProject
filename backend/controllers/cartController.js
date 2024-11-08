@@ -1,6 +1,5 @@
 const Cart = require('../models/cartModel');
 // add to cart
-
 exports.addItemToCart = async (req, res) => {
   const { userId, itemId, name, price } = req.body;
   const quantity = req.body.quantity || 1;
@@ -13,7 +12,6 @@ exports.addItemToCart = async (req, res) => {
   if (!userId) missingFields.push('userId');
   if (!itemId) missingFields.push('itemId');
   if (!price) missingFields.push('price');
-  if (!quantity) missingFields.push('quantity');
   
   if (missingFields.length > 0) {
     console.error(`Missing required fields in add-to-cart request: ${missingFields.join(', ')}`);
@@ -31,13 +29,18 @@ exports.addItemToCart = async (req, res) => {
     const itemIndex = cart.items.findIndex(item => item.itemId == itemId);
 
     if (itemIndex > -1) {
-      // If the item exists, update the quantity directly
+      // If the item exists, increment the quantity by 1
+      console.log(`Item with itemId: ${itemId} found in cart, incrementing quantity...`);
+
       let item = cart.items[itemIndex];
-      item.quantity = quantity; // Set quantity directly
+      item.quantity += 1; // Increment the quantity by 1
+      console.log(`Incremented quantity to: ${item.quantity}`);
+
       item.totalPrice = item.quantity * item.price;
     } else {
-      // If the item doesn't exist, add it to the cart
+      // If the item doesn't exist, add it to the cart with the given quantity
       cart.items.push({ itemId, name, quantity, price, totalPrice: price * quantity });
+      console.log(`Added new item to cart: ${itemId}`);
     }
 
     // Recalculate the total amount for the cart
@@ -51,6 +54,62 @@ exports.addItemToCart = async (req, res) => {
     res.status(500).json({ error: 'Failed to add item to cart' });
   }
 };
+
+// exports.addItemToCart = async (req, res) => {
+//   const { userId, itemId, name, price } = req.body;
+//   const quantity = req.body.quantity || 1;
+
+//   // Console logging for debugging
+//   console.log('Add to Cart Request Body:', req.body);
+
+//   // Check for missing fields
+//   const missingFields = [];
+//   if (!userId) missingFields.push('userId');
+//   if (!itemId) missingFields.push('itemId');
+//   if (!price) missingFields.push('price');
+//   if (!quantity) missingFields.push('quantity');
+  
+//   if (missingFields.length > 0) {
+//     console.error(`Missing required fields in add-to-cart request: ${missingFields.join(', ')}`);
+//     return res.status(400).json({ error: `Missing required fields: ${missingFields.join(', ')}` });
+//   }
+
+//   try {
+//     // Find the user's cart or create a new one if it doesn't exist
+//     let cart = await Cart.findOne({ userId });
+//     if (!cart) {
+//       cart = new Cart({ userId, items: [], totalAmount: 0 });
+//     }
+
+//     // Find the item in the cart, if it exists
+//     const itemIndex = cart.items.findIndex(item => item.itemId == itemId);
+
+//     if (itemIndex > -1) {
+//       // If the item exists, increment the quantity
+//       console.log(`Item with itemId: ${itemId} found in cart, updating quantity...`);
+
+//       let item = cart.items[itemIndex];
+//       item.quantity = quantity; // icnrement the quantity
+
+//       console.log("incremented the quantity to ", item.quantity);
+
+//       item.totalPrice = item.quantity * item.price;
+//     } else {
+//       // If the item doesn't exist, add it to the cart
+//       cart.items.push({ itemId, name, quantity, price, totalPrice: price * quantity });
+//     }
+
+//     // Recalculate the total amount for the cart
+//     cart.totalAmount = cart.items.reduce((acc, item) => acc + item.totalPrice, 0);
+
+//     // Save the updated cart
+//     await cart.save();
+//     res.status(200).json(cart);
+//   } catch (error) {
+//     console.error('Error in addItemToCart controller:', error);
+//     res.status(500).json({ error: 'Failed to add item to cart' });
+//   }
+// };
 
 //remove item from 
 
