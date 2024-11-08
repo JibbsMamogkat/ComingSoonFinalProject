@@ -1,117 +1,119 @@
-/* Centering and styling the main cart container */
-#cart-container {
-    width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
 }
 
-/* Styling the cart table */
+header {
+    background-image: url('../images/menuItems/bistektagalog.jpg'); /* Replace with your actual image path */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 150px;
+}
+
+
+nav {
+    background-color: var(--black-olive); /* Dark background for navigation */
+    color: #fff; /* Light text color for better contrast */
+    padding: 1rem 0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    padding: 10px;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#cart-container {
+    margin: 30px auto;
+    max-width: 90%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 #cart-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 #cart-table th, #cart-table td {
+    border: 1px solid #ddd;
     padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-    font-size: 1em;
+    text-align: left;
 }
 
-/* Making headers bold and with a background */
 #cart-table th {
     background-color: #333;
-    color: white;
+    color: #fff;
+}
+
+#cart-table td {
+    font-size: 16px;
+}
+
+#cart-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#cart-summary p {
+    font-size: 18px;
     font-weight: bold;
 }
 
-/* Styling quantity input fields */
-#cart-table input[type="number"] {
-    width: 60px;
-    padding: 5px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-/* General button styling */
 button {
-    padding: 8px 12px;
-    font-size: 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Checkout button */
-#checkout-button {
     background-color: #28a745;
     color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 10px;
 }
 
-#checkout-button:hover {
-    background-color: #218838;
-}
-
-/* Clear cart button */
-#clear-cart-button {
+button#clear-cart-button {
     background-color: #dc3545;
-    color: white;
 }
 
-#clear-cart-button:hover {
-    background-color: #c82333;
-}
-
-/* Remove button */
-#cart-table button {
-    background-color: #ffc107;
-    color: #333;
-}
-
-#cart-table button:hover {
-    background-color: #e0a800;
-}
-
-/* Styling the summary section */
-#cart-summary {
-    margin-top: 20px;
-    text-align: right;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-#total-amount {
-    color: #333;
-    font-size: 1.5em;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    #cart-container {
-        width: 95%;
-        padding: 10px;
-    }
-
-    #cart-table th, #cart-table td {
-        padding: 8px;
-        font-size: 0.9em;
-    }
-
-    #cart-summary {
-        font-size: 1em;
-    }
-
-    #total-amount {
-        font-size: 1.3em;
-    }
+button:hover {
+    opacity: 0.9;
 }
 
 /* FOOTER */
