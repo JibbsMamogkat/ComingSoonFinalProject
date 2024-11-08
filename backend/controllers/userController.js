@@ -95,6 +95,11 @@ const findUser = async (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     req.session.userId = user._id; 
+    req.session.email = user.email;
+    req.session.firstName = user.firstName;
+    req.session.lastName = user.lastName;
+    req.session.phoneNumber = user.phoneNumber;
+    req.session.address = user.address;
     res.redirect('/home');
   } catch (error) {
     res.status(500).json({ message: 'An error occurred. Please try again.' });
