@@ -13,18 +13,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Check if userId exists before fetching cart data
     if (userId) {
-        fetchCartData(userId)
-            .then(cartData => {
-                const cartCount = cartData.items.reduce((total, item) => total + item.quantity, 0);
-                updateCartCount(cartCount);
-            })
-            .catch(handleCartCountError);
+        // Check if cart already exists for the user
+        checkIfCartExists(userId)
+        .then(cartExists => {
+            if (cartExists) {
+                // Fetch the existing cart data if a cart exists
+                fetchCartData(userId)
+                    .then(cartData => {
+                        const cartCount = cartData.items.reduce((total, item) => total + item.quantity, 0);
+                        updateCartCount(cartCount);
+                    })
+                    .catch(handleCartCountError);
+            } else {
+                // Handle case for a new user with no existing cart
+                updateCartCount(0);
+                console.log('No existing cart found for the user');
+            }
+        })
+        .catch(handleInexistentCartError);
     } else {
-        // User is not logged in, set cart count to 0
-        updateCartCount(0);
+    // User is not logged in or their doesnt exist yet, set cart count to 0
+    updateCartCount(0);
     }
 });
 
+//function to handle inexistent cart error
+function handleInexistentCartError(error) {
+    console.error('Cart doesnt exist yet:', error);;
+}
+
+// Function to check if a cart exists for a given userId
+function checkIfCartExists(userId) {
+    return new Promise((resolve, reject) => {
+        // Call the backend route to check if a cart exists
+        fetch(`/api/cart/exists/${userId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error checking cart existence');
+                }
+                return response.json();
+            })
+            .then(data => resolve(data.exists)) // Assuming the response structure includes an 'exists' property
+            .catch(error => reject(error));
+    });
+}
 
 // Fetches menu items from the API
 function fetchMenuItems() {
