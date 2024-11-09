@@ -151,7 +151,7 @@ function displayMenuItems(menuItems) {
 // Handles errors during fetch or display
 function handleError(error) {
     console.error('Error fetching menu items:', error);
-    alert('Failed to load menu items. Please try again later.');
+    
 }
 
 // Main function to add an item to the cart
