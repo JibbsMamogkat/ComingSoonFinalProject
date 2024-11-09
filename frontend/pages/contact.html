@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="../css/contact.css">
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <nav>
             <ul>
@@ -21,26 +20,57 @@
     </header>
 
     <main>
-        <!-- Main Contact Us Section -->
         <section class="contact-us">
             <h2>Contact Us</h2>
-            <form action="submit-form.php" method="POST">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+            <form action="javascript:void(0);">
+                <div class="form-input">
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" placeholder="Name" required>
+                </div>
                 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+                <div class="form-input">
+                    <label for="email">Email:</label><br>
+                    <input type="text" id="email" placeholder="Email" required>
+                </div>
                 
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
+                <div class="form-input">
+                    <label for="message">Message:</label><br>
+                    <textarea id="message" cols="31" rows="4" placeholder="Message" required></textarea>
+                </div>
                 
-                <button type="submit">Send Message</button>
+                <div class="form-input">
+                    <button type="button" onclick="sendEmail()">Send Message</button>
+                </div>
             </form>
+            <p id="statusMessage"></p>
         </section>
     </main>
     
     <footer>
         <p>&copy; 2024 Pinoy Plates. All rights reserved.</p>
     </footer>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+
+            let body = "Name: " + name + "<br/>Email: " + email + "<br/>Message: " + message;
+            
+            Email.send({
+                SecureToken: "ca61ec79-4c6b-42ac-a1fb-bc6a48c983ad", // Replace with your actual SecureToken from smtpjs.com
+                To: 'leecalv02@gmail.com', // Recipient's email address
+                From: "leecalv02@gmail.com", // Your Gmail address
+                Subject: "New Contact Form Submission",
+                Body: body
+            }).then(
+                response => document.getElementById("statusMessage").innerText = "Message sent successfully!"
+            ).catch(
+                error => document.getElementById("statusMessage").innerText = "Failed to send message: " + error
+            );
+        }
+    </script>
 </body>
 </html>
