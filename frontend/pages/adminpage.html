@@ -6,53 +6,165 @@
     <title>Admin Dashboard - Pinoy Plates</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/adminpage.css">
-
 </head>
 <body>
     <header>
         <h1>Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <button class="logout">Log Out</button>
+        <button class="logout" onclick="logout()">Log Out</button>
     </header>
 
     <main>
         <section class="admin-content">
+            <!-- Manage Menu Section -->
             <div class="admin-section">
                 <h2>Manage Menu</h2>
-                <button class="action-button">Add New Item</button>
-                <button class="action-button">Edit Existing Items</button>
-                <button class="action-button">Remove Items</button>
+                <button class="action-button" onclick="openAddItemForm()">Add New Item</button>
+                <button class="action-button" onclick="loadItemsForRemoval()">Remove Items</button>
             </div>
 
+            <!-- Update Prices Section -->
             <div class="admin-section">
-                <h2>View Orders</h2>
-                <button class="action-button">View Pending Orders</button>
-                <button class="action-button">View Completed Orders</button>
+                <h2>Update Pricing</h2>
+                <label for="priceMultiplier">Price Multiplier:</label>
+                <input type="number" id="priceMultiplier" value="1" min="0.1" step="0.1" onchange="updatePrices()" />
             </div>
 
+            <!-- Apply Discounts Section -->
             <div class="admin-section">
-                <h2>Manage Users</h2>
-                <button class="action-button">View All Users</button>
-                <button class="action-button">Remove User</button>
-            </div>
-
-            <div class="admin-section">
-                <h2>Promotions and Discounts</h2>
-                <button class="action-button">Create Promotion</button>
-                <button class="action-button">View Active Promotions</button>
+                <h2>Apply Discount</h2>
+                <label for="discountPercent">Discount Percentage:</label>
+                <input type="number" id="discountPercent" min="0" max="100" />
+                <button onclick="applyDiscount()">Apply Discount</button>
             </div>
         </section>
+
+        <!-- Add Item Form Modal -->
+        <div id="addItemForm" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddItemForm()">&times;</span>
+                <h2>Add New Menu Item</h2>
+                <label>Name: <input type="text" id="itemName" /></label><br>
+                <label>Price: <input type="number" id="itemPrice" /></label><br>
+                <label>Description: <textarea id="itemDescription"></textarea></label><br>
+                <label>Category: <input type="text" id="itemCategory" /></label><br>
+                <button onclick="addMenuItem()">Add Item</button>
+            </div>
+        </div>
 
         <footer>
             <p>&copy; 2024 Pinoy Plates. All rights reserved.</p>
         </footer>
     </main>
+
+    <script>
+        // Log out function
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "login.html"; // Redirect to login page
+        }
+
+        // Open the Add Item form modal
+        function openAddItemForm() {
+            document.getElementById("addItemForm").style.display = "block";
+        }
+
+        // Close the Add Item form modal
+        function closeAddItemForm() {
+            document.getElementById("addItemForm").style.display = "none";
+        }
+
+        // Add a new item to the menu
+        async function addMenuItem() {
+            const newItem = {
+                name: document.getElementById("itemName").value,
+                price: parseFloat(document.getElementById("itemPrice").value),
+                description: document.getElementById("itemDescription").value,
+                category: document.getElementById("itemCategory").value,
+                available: true
+            };
+
+            try {
+                const response = await fetch('/api/menu', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newItem)
+                });
+                if (response.ok) {
+                    alert("Item added successfully!");
+                    closeAddItemForm();
+                } else {
+                    alert("Failed to add item.");
+                }
+            } catch (error) {
+                console.error("Error adding item:", error);
+            }
+        }
+
+        // Load items for removal (this example assumes the backend provides item data)
+        async function loadItemsForRemoval() {
+            const response = await fetch('/api/menu');
+            const items = await response.json();
+            items.forEach(item => {
+                const itemElement = document.createElement("div");
+                itemElement.innerHTML = `${item.name} - ${item.price} <button onclick="removeMenuItem('${item._id}')">Remove</button>`;
+                document.body.appendChild(itemElement);
+            });
+        }
+
+        // Remove an item
+        async function removeMenuItem(itemId) {
+            try {
+                const response = await fetch(`/api/menu/${itemId}`, {
+                    method: 'DELETE'
+                });
+                if (response.ok) {
+                    alert("Item removed successfully!");
+                    location.reload(); // Refresh to show updated list
+                } else {
+                    alert("Failed to remove item.");
+                }
+            } catch (error) {
+                console.error("Error removing item:", error);
+            }
+        }
+
+        // Update prices using multiplier
+        async function updatePrices() {
+            const multiplier = parseFloat(document.getElementById("priceMultiplier").value);
+            try {
+                const response = await fetch(`/api/menu/updatePrices`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ multiplier })
+                });
+                if (response.ok) {
+                    alert("Prices updated successfully!");
+                } else {
+                    alert("Failed to update prices.");
+                }
+            } catch (error) {
+                console.error("Error updating prices:", error);
+            }
+        }
+
+        // Apply discount to all menu items
+        async function applyDiscount() {
+            const discountPercent = parseFloat(document.getElementById("discountPercent").value);
+            try {
+                const response = await fetch(`/api/menu/applyDiscount`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ discountPercent })
+                });
+                if (response.ok) {
+                    alert("Discount applied successfully!");
+                } else {
+                    alert("Failed to apply discount.");
+                }
+            } catch (error) {
+                console.error("Error applying discount:", error);
+            }
+        }
+    </script>
 </body>
 </html>
