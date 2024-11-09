@@ -1,3 +1,13 @@
+// Retrieve the root styles
+const rootStyles = getComputedStyle(document.documentElement);
+
+// Get each color value
+const cocoaBrown = rootStyles.getPropertyValue('--cocoa-brown').trim();
+const blackOlive = rootStyles.getPropertyValue('--black-olive').trim();
+const jasper = rootStyles.getPropertyValue('--jasper').trim();
+const kobicha = rootStyles.getPropertyValue('--kobicha').trim();
+const blackOlive2 = rootStyles.getPropertyValue('--black-olive-2').trim();
+
 // for the TIME, DATE and DAY
 let timeAndDate = document.querySelector('#dateTime .dateTime');
 
@@ -78,12 +88,6 @@ signUpVerify.addEventListener('click', () => {
   window.history.pushState({}, '', '/home/verifyId123');
 });
 
-loginButton.addEventListener('click', () => {
-  loginForm.style.display = 'flex'; 
-  document.body.classList.add('no-scroll');
-  window.history.pushState({}, '', '/home/loginId313');
-  
-});
 
 closeBtn.addEventListener('click', () => {
   loginForm.style.display = 'none';
@@ -100,7 +104,7 @@ signUpButton.addEventListener('click', () => {
 });
 
 backBtn.addEventListener('click', () => {
-  login.style.display = 'flex';
+  login.style.display = 'grid';
   signUpForm.style.display = 'none';
   signUpFormInput.reset();
   window.history.pushState({}, '', '/home/loginId313');
@@ -112,7 +116,7 @@ backBtn2.addEventListener('click', () => {
 });
 
 if (window.location.pathname === '/home/loginId313') {
-  login.style.display = 'flex';
+  login.style.display = 'grid';
   signUpForm.style.display = 'none';
   loginForm.style.display = 'flex'; 
 }
@@ -218,12 +222,14 @@ registerForm.addEventListener('submit', (e) => {
   } 
 
 });
-// Handling Errors 
+// Handling Errors Via Backend
 document.addEventListener('DOMContentLoaded', () => { 
   const urlParams = new URLSearchParams(window.location.search);
   const errorMessage = urlParams.get('error');
   document.getElementById('errorEmail').style.display = 'flex';
   document.getElementById('verificationError').style.display = 'flex';
+  document.getElementById('loginErrorEmail').style.display = 'flex';
+  document.getElementById('loginErrorPassword').style.display = 'flex';
   if (errorMessage) {
     // for email
     document.getElementById('errorEmail').textContent = decodeURIComponent(errorMessage);
@@ -239,13 +245,30 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('code').style.border = '1px solid grey';
       document.getElementById('verificationError').style.display = 'none';
     } );
+    // for login
+    if (errorMessage === 'User not found.') {
+      document.getElementById('loginErrorEmail').textContent = decodeURIComponent(errorMessage);
+      document.getElementById('useroremail').style.border = '2px solid red';
+      document.getElementById('useroremail').addEventListener('mouseover', () => {
+        document.getElementById('useroremail').style.border = '1px solid grey';
+        document.getElementById('loginErrorEmail').style.display = 'none';
+      });
+    } else if (errorMessage === 'Invalid credentials.') {
+      document.getElementById('loginErrorPassword').textContent = decodeURIComponent(errorMessage);
+      document.getElementById('password').style.border = '2px solid red';
+      document.getElementById('password').addEventListener('mouseover', () => {
+        document.getElementById('password').style.border = '1px solid grey';
+        document.getElementById('loginErrorPassword').style.display = 'none';
+      });
+    }
   }
 });
 
 //----- USER LOGIN GUI -----
-const cartButtonHomepage = document.getElementById('CartButton');
+const cartButtonHomepage = document.getElementById('show-cart-button');
 const myaccountButton = document.getElementById('MyAccount');
 const logoutButton = document.getElementById('logOut');
+
 
 document.addEventListener('DOMContentLoaded', async () => {
   // Fetch the home page content
@@ -256,6 +279,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loginButtonImg = document.querySelector('#logIn img');
     let isClickTimes = true;
     if (isLoggedIn) {
+      const welcomeButton = document.getElementById('welcomeButtons');
+      welcomeButton.style.display = 'none';
       cartButtonHomepage.style.display = 'inline-block';
       loginButtonImg.src = "../images/icons/account.png"; // Change to logged-in icon
       loginButton.children[1].remove();
@@ -280,15 +305,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         logoutButton.addEventListener('click', async () => {
           await fetch('/logout', {method: 'POST'});
           window.location.href = '/home';
-          sessionStorage.clear();
+          localStorage.clear();
         });
       });
     } else {
       loginButtonImg.src = "../images/icons/logIn.png"; // Default icon for logged out
       logoutButton.style.display = 'none';
+      // Redirect the user is not logged in
+      loginButton.addEventListener('click', () => {
+        loginForm.style.display = 'flex'; 
+        document.body.classList.add('no-scroll');
+        window.location.href = '/home/loginId313';
+      });
     }
   }
 });
+
+
+
 
 // slideSHOW in signup
 const images = ['/images/menuItems/adobo.jpg', '/images/menuItems/bibingka.jpg', '/images/menuItems/bistektagalog.jpg'];
@@ -320,7 +354,7 @@ document.addEventListener('scroll', () => {
   const welcomeTwo = document.getElementById('welcomeTwo');
   
   if (window.scrollY > 1) {
-    headerContainer.style.backgroundColor = 'blue';
+    headerContainer.style.backgroundColor = blackOlive2;
     welcomeOne.style.opacity = '0';
     welcomeTwo.style.opacity = '0';
     
@@ -343,141 +377,3 @@ document.addEventListener('scroll', () => {
       headerContainer.style.transform = 'scale(1)';
     }, 300);
 });
-
-
-/*
-
-// for the TIME, DATE and DAY
-let timeAndDate = document.querySelector('#dateTime .dateTime');
-
-async function getDateTime(url) {
-  const response = await fetch(url);
-  const body = await response.json();
-  let {datetime} = body;
-  let splitting = datetime.split(/[+.:T]/);  
-  let [date, time, minute] = [splitting[0], splitting[1], splitting[2]];
-  let [year, month, day] = date.split("-");
-  let pinoydate = ` ${day}/${month}/${year} `;
-  return [pinoydate, time, minute ];
-}
-async function day(url) {
-  const response = await fetch(url);
-  const body = await response.json();
-  let {dayOfWeek} = body;
-  return {dayOfWeek};
-}
-
-
-function updateDateTime() {
-  getDateTime("https://worldtimeapi.org/api/timezone/Asia/Manila").then(([ pinoydate, time, minute ]) => {
-    if ( parseInt(time) <= 11 && parseInt(minute) < 60) {
-      timeAndDate.textContent = ` - ${pinoydate} ${time}:${minute}AM `;
-    } else {
-      timeAndDate.textContent = ` - ${pinoydate} ${time}:${minute}PM `;
-    }
-    timeAndDate.classList.add("dateTime");
-  });
-  day("https://timeapi.io/api/time/current/zone?timeZone=Asia%2FManila").then(({dayOfWeek}) => {
-    let day = document.getElementById('day');
-    day.textContent = `${dayOfWeek}`;
-    day.classList.add("dateTime");
-  });
-}
-
-updateDateTime();
-
-//we should set this to a MINUTE so that we will not be banned in the free links
-setInterval(updateDateTime, 60000);
-
-
-// for the LOG IN and SIGN UP FORM
-const loginButton = document.querySelector('#logIn');
-const closeBtn = document.getElementById('closeBtn');
-const loginForm = document.getElementById('loginForm');
-
-loginButton.addEventListener('click', () => {
-    loginForm.style.display = 'flex'; 
-    window.history.pushState({}, '', '/home/loginId313');
-});
-
-closeBtn.addEventListener('click', () => {
-    loginForm.style.display = 'none';
-    window.history.pushState({}, '', '/home'); 
-});
-
-if (window.location.pathname === '/home/loginId313') {
-  loginForm.style.display = 'flex'; 
-}
-
-// for SIGN UP and LOGIN
-const signUpButton = document.querySelector('.signUpHomepage');
-const signUpForm = document.getElementById('signUp-content');
-const login = document.querySelector('.logIn-content');
-const backBtn = document.getElementById('backBtn');
-
-signUpButton.addEventListener('click', () => { 
-  login.style.display = 'none';
-  signUpForm.style.display = 'flex';
-});
-
-
-backBtn.addEventListener('click', () => {
-  login.style.display = 'flex';
-  signUpForm.style.display = 'none';
-});
-
-
-//Login and Sign Up Form validation
-
-const registerForm = document.getElementById('registerForm');
-const errorElement = document.getElementById('error');
-
-registerForm.addEventListener('submit', (e) => {
-
-  // for phone number
-  let messages = []; 
-  const phoneNumberInput = document.getElementById('phoneNumber');
-  const phoneNumber = phoneNumberInput.value;
-  // for password
-  const passwordInput = document.getElementById('passwordSignUp');
-  const confirmPasswordInput = document.getElementById('confirmPassword');
-  const password = passwordInput.value;
-  const confirmPassword = confirmPasswordInput.value;
-  // phone number validation
-  if (phoneNumber.length < 11) {
-    messages.push('Phone Number must be at least 11 digits');
-    phoneNumberInput.style.border = '2px solid red';
-
-  } else if (phoneNumber.length >= 12) {
-    messages.push('Phone Number must be at most 11 digits');
-    phoneNumberInput.style.border = '2px solid red';
-  }
-
-  else if (isNaN(phoneNumber)) {
-    messages.push('Phone Number must be a number');
-    phoneNumberInput.style.border = '2px solid red';
-  } 
-  // password validation
-  else if (password.length < 6) {
-    messages.push('Password must be at least 6 characters');
-    passwordInput.style.border = '2px solid red';
-  }
-  else if (password !== confirmPassword) {
-    messages.push('Passwords do not match');
-    passwordInput.style.border = '2px solid red';
-    confirmPasswordInput.style.border = '2px solid red';
-  }
-  if (messages.length > 0) {
-    e.preventDefault();  // Prevent form submission
-    errorElement.innerText = messages.join(', ');  // Display error messages
-  } else {
-    errorElement.innerText = '';
-    phoneNumberInput.style.border = ''; 
-    passwordInput.style.border = '';
-    confirmPasswordInput.style.border = '';
-    signUpForm.style.display = 'none';
-    login.style.display = 'flex';
-  }
-});
-
-*/

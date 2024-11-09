@@ -22,7 +22,7 @@
       <h5><span>|</span> Opens Monday-Saturday: 5am-8pm</h5>
     </div>
     <div id="account" style="padding-right: 1rem;">
-      <button id="CartButton" style="display: none;">Cart</button>
+      <button id="show-cart-button" onclick="goToCart()"> <img src="/images/icons/shopping-cart.png" alt="Cart" class="cart-icon"><span id="cart-count">0</span></button>
       <button id="logIn">
         <img src="../images/icons/logIn.png" alt="for account">
         <p>Sign In</p>
@@ -35,25 +35,25 @@
   <div id="loginForm">
     <div class="logIn-content">
       <span id="closeBtn" class="close">&times;</span>
-      <div id="logo">
+      <div class="loginLogo">
+       <img src="/images/icons/Icon.png" alt="Pinoy Plates" style="width: 100px; object-fit: cover;">
       </div>
       <form action="/login" method="post">
         <input placeholder="Email" type="text" id="useroremail" name="useroremail">
+        <p id="loginErrorEmail" style="color: red; font-family: Arial; font-size: 15px; margin: 0;"></p>
         <input placeholder="Password" type="password" id="password" name="password">
+        <p id="loginErrorPassword" style="color: red; font-family: Arial; font-size: 15px; margin: 0;"></p>
         <button type="submit">Sign In</button>
-        <a href="/forgot">Forgot Password</a>
-        <div>
-          <button>Log In via Facebook</button>
-          <button>Log In via Google</button>
-        </div>
-        <a href="">Help</a>
+        <a href="/forgot" style="font-family: Arial, Helvetica, sans-serif; text-decoration: none; color: grey;">Forgot Password</a>
       </form>
       <button class="signUpHomepage">Sign Up</button>
     </div>
 
     <!-- Sign Up Form Section -->
     <div id="signUp-content">
-      <div id="logo">Pinoy Plates</div>
+      <div id="logo">
+        <img src="/images/icons/Icon.png" alt="">
+      </div>
       <form id="registerForm" action="/signup" method="post">
         <input placeholder="First Name" type="text" id="firstName" name="firstName" required>
         <input placeholder="Last Name" type="text" id="lastName" name="lastName" required>
@@ -78,7 +78,6 @@
         <button id="backBtn" class="close">Sign In</button>
         <p class="textSignUp">Already have an account?</p>
       </form>
-      <a href="" id="help">Help</a>
       <div id="slideShowContainer">
         <img alt="Slideshow" id="Slideshow-image">
       </div>
@@ -114,29 +113,38 @@
         <p>Where you can find the best Filipino dishes in town!</p>
       </div>
       <div id="welcomeButtons">
-        <button id="welcomeSignIn">Sign In</button>
-        <button id="welcomeSignUp">Sign Up</button>
+        <a href="/home/loginId313" id="welcomeSign">Sign In</a>
+        <a href="/home/signUpId6969" id="welcomeSign">Sign Up</a>
       </div>
     </section>
 
     <!-- Menu Section -->
-    <section class="menu-section">
-      <h2>Explore Our Menu</h2>
-      <div class="menu-grid">
-        <div class="menu-item">
-          <img src="../images/menuItems/kwek-kwek.jpg" alt="Appetizers">
-          <h3>Appetizers</h3>
-        </div>
-        <div class="menu-item">
-          <img src="../images/menuItems/bulalo.jpg" alt="Main Courses">
-          <h3>Main Courses</h3>
-        </div>
-        <div class="menu-item">
-          <img src="../images/menuItems/halohalo.jpg" alt="Desserts">
-          <h3>Desserts</h3>
-        </div>
-      </div>
-    </section>
+<section class="menu-section">
+  <h2>Explore Our Menu</h2>
+  <div class="menu-grid">
+      <a href="/menu#appetizers">
+          <div class="menu-item">
+              <img src="../images/menuItems/kwek-kwek.jpg" alt="Appetizers">
+              <h3>Appetizers</h3>
+          </div>
+      </a>
+      
+      <a href="/menu#main-courses">
+          <div class="menu-item">
+              <img src="../images/menuItems/bulalo.jpg" alt="Main Courses">
+              <h3>Main Courses</h3>
+          </div>
+      </a>
+      
+      <a href="/menu#desserts">
+          <div class="menu-item">
+              <img src="../images/menuItems/halohalo.jpg" alt="Desserts">
+              <h3>Desserts</h3>
+          </div>
+      </a>
+  </div>
+</section>
+
     </section>
   </main>
 
@@ -149,9 +157,9 @@
       <div class="footer-section">
         <h3>Company</h3>
         <ul>
-          <li><a href="#">Our Menu</a></li>
+          <li><a href="/menu">Our Menu</a></li>
           <li><a href="#">Online Exclusives</a></li>
-          <li><a href="#">Who We Are</a></li>
+          <li><a href="/about">Who We Are</a></li>
           <li><a href="#">Careers</a></li>
           <li><a href="#">Franchising</a></li>
         </ul>
@@ -159,7 +167,7 @@
       <div class="footer-section">
         <h3>Contact</h3>
         <ul>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="/contact">Contact Us</a></li>
           <li><a href="#">Find a Location</a></li>
         </ul>
       </div>
@@ -187,8 +195,10 @@
     </div>
   </footer>
   
-
+  
   <!-- JavaScript Files -->
   <script src="../js/homepage.js"></script>
+  <script src="../js/menu.js"></script>
+  
 </body>
 </html>

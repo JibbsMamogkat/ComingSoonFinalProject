@@ -16,6 +16,49 @@ html, body {
   margin: 0;
   padding: 0;
 }
+#show-cart-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and count */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white; /* Cocoa brown color */
+  border: none;
+  cursor: pointer;
+  animation: waterBackground 4s ease infinite;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cart-icon {
+  width: 24px;
+  height: 24px;
+}
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--black-olive); /* Alert color for count */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+#show-cart-button:hover {
+  background-color: var(--jasper); /* Change color on hover */
+  transform: scale(1.05); /* Slight scale effect */
+}
 
 main {
   flex: 1; /* This makes the main content take up available space */
@@ -138,7 +181,7 @@ main {
 .logIn-content {
   grid-template-columns: 2fr 1fr;
   grid-template-areas: 
-  "logo close"
+  "loginLogo close"
   "form form"
   "signUp signUp"
   ;
@@ -152,15 +195,64 @@ main {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.logIn-content > button {
+  margin-top: 10px;
+  background-color: var(--cocoa-brown);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logIn-content > button:hover {
+  background-color: #0056b3;
+}
+#welcomeSign {
+  text-decoration: none;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--cocoa-brown); /* Button background color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Spacing around text */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  display: inline-block; /* Makes it respect padding like a button */
+  font-size: 16px; /* Font size */
+  font-weight: bold; /* Makes the text bold */
+  cursor: pointer; /* Changes cursor to pointer */
+  transition: background-color  ease; /* Smooth hover transition */
+}
+
+#welcomeSign:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
 .signUpHomepage {
   grid-area: signUp;
 }
 .logIn-content > form {
   grid-area: form;
+
+  
+}
+.logIn-content > form > button {
+  background-color: var(--cocoa-brown);
+  margin-bottom: 10px;
+}
+.logIn-content > form > input{
+  max-width: 380px;
+}
+#closeBtn {
+  grid-area: close;
+  justify-self: end;
+}
+.loginLogo{
+  grid-area: loginLogo;
+  justify-self: end;
+  margin-right: 20px;
 }
 
 .close {
-  grid-area: close;
   color: #aaa;
   float: right;
   font-size: 28px;
@@ -213,8 +305,7 @@ form button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 #signUp-content > *:nth-child(odd) {
-  padding: 20px;
-  margin-left: 10px;
+  justify-self: end;
 }
 
 #help {
@@ -234,29 +325,20 @@ form button:hover {
   height: 100%;
   object-fit: cover;
 }
-
-
 #logo {
   grid-area: logo;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  border: none;
-  position: relative;
-  justify-content: center;
-  cursor: pointer;
-  align-items: center;
-  background: linear-gradient(135deg, #d3d3d3, #ffffff, #b0c4de, #4facfe, #d3d3d3, #ffffff);
-  background-size: 400% 400%;
-  animation: waterBackground 4s ease infinite;
+
 }
 #logo > img {
-  height: 35px;
-  width: 35px;
+  position: absolute;
+  top: 0;
+  height: 80px;
+  width: 80px;
   object-fit: cover;
   border-radius: 50%;
 }
-
 
 
 /* for main Homepage*/
@@ -458,7 +540,9 @@ form button:hover {
   margin-top: 5px;
   width: 100px;
   font-size: 10px;
+  background-color: var(--cocoa-brown);
 }
+
 
 #firstName {
   grid-area: firstName;
@@ -556,6 +640,7 @@ form button:hover {
   margin-right: 10px ;
   max-width: 220px;
   margin-top: 5px;
+  background-color: var(--cocoa-brown);
 
 }
 
@@ -565,8 +650,13 @@ form button:hover {
 
 #verificationForm {
   display: none;
-  position: relative;
   grid-template-columns: 1fr;
+  grid-template-areas: 
+  "backBtn2"
+  "emailSentTo"
+  "verifyCode"
+  "verification"  
+  ;
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -574,14 +664,22 @@ form button:hover {
   max-width: 1000px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
+
+#backBtn2 {
+  grid-area: backBtn2;
+}
+#verificationForm > p {
+  grid-area: emailSentTo;
+}
 #verificationForm > div {
   display: flex;
+  grid-area: verifyCode;
 }
+
 #verificationForm > div > input {
   width: 200px;
   margin-right: 5px;
 }
-
 
 #verificationForm > div > {
   justify-content: center;
@@ -594,6 +692,10 @@ form button:hover {
   cursor: pointer;
 }
 
+#verification {
+  grid-area: verification;
+  background-color: var(--cocoa-brown);
+}
 
 /* for GUI*/
 
@@ -752,5 +854,4 @@ form button:hover {
   50% { transform: rotate(180deg) scale(1.1); }
   100% { transform: rotate(360deg) scale(1); }
 }
-
 

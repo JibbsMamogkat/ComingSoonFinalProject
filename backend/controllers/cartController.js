@@ -1,6 +1,5 @@
 const Cart = require('../models/cartModel');
 // add to cart
-
 exports.addItemToCart = async (req, res) => {
   const { userId, itemId, name, price } = req.body;
   const quantity = req.body.quantity || 1;
@@ -13,7 +12,6 @@ exports.addItemToCart = async (req, res) => {
   if (!userId) missingFields.push('userId');
   if (!itemId) missingFields.push('itemId');
   if (!price) missingFields.push('price');
-  if (!quantity) missingFields.push('quantity');
   
   if (missingFields.length > 0) {
     console.error(`Missing required fields in add-to-cart request: ${missingFields.join(', ')}`);
@@ -31,13 +29,18 @@ exports.addItemToCart = async (req, res) => {
     const itemIndex = cart.items.findIndex(item => item.itemId == itemId);
 
     if (itemIndex > -1) {
-      // If the item exists, update the quantity directly
+      // If the item exists, increment the quantity by 1
+      console.log(`Item with itemId: ${itemId} found in cart, incrementing quantity...`);
+
       let item = cart.items[itemIndex];
-      item.quantity = quantity; // Set quantity directly
+      item.quantity += 1; // Increment the quantity by 1
+      console.log(`Incremented quantity to: ${item.quantity}`);
+
       item.totalPrice = item.quantity * item.price;
     } else {
-      // If the item doesn't exist, add it to the cart
+      // If the item doesn't exist, add it to the cart with the given quantity
       cart.items.push({ itemId, name, quantity, price, totalPrice: price * quantity });
+      console.log(`Added new item to cart: ${itemId}`);
     }
 
     // Recalculate the total amount for the cart

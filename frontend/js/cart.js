@@ -172,5 +172,10 @@ async function syncCartClearWithBackend() {
 
 // Redirect to the checkout page when checkout button is clicked
 document.getElementById('checkout-button').addEventListener('click', () => {
-    window.location.href = '../pages/checkout.html'; // Redirect to checkout page
+    window.location.href = '/checkout'; // Redirect to checkout page
+});
+
+//redirect to menu page
+document.getElementById('menu-button').addEventListener('click', () => {
+    window.location.href = '/menu'; // Redirect to menu page
 });

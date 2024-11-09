@@ -66,13 +66,16 @@
 <body>
   <div class="container">
     <h2>Pinoy Plates</h2>
+    <a href="/home" style="text-decoration: none; font-size: 15px; color: grey;">Homepage</a>
     <form action="/verifyCode" method="POST">
       <div class="form-group">
         <label for="code">Verification Code</label>
         <input type="text" id="code" name="code" placeholder="Enter verification code" required />
+        <p id="forgotCode" style="color: red; font-family: Arial; font-size: 10px; margin: 0;"></p>
       </div>
       <button type="submit">Verify Code</button>
     </form>
   </div>
 </body>
+<script src="../js/codeforgot.js"></script>
 </html>

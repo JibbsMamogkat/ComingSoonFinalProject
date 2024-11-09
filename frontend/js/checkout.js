@@ -1,13 +1,21 @@
-// Define the user ID (hardcoded for now; in a real app, this would come from session/auth)
-async function getUserId(){
-    let response = await fetch('/api/user-info');
-    let data = await response.json();
-    return data.userId;
+async function getUserId() {
+    try {
+        let response = await fetch('/api/user-info');
+        let body = await response.json();
+        let { userId } = body;
+        if (userId) {
+            localStorage.setItem('userId', userId);
+        }
+        return userId;
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        throw error;
+    }
 }
 
 // Function to fetch cart data from the backend
 async function fetchCartData() {
-    const userId = await getUserId();
+    const userId = localStorage.getItem('userId');
     try {
         const response = await fetch(`/api/cart/view-cart/${userId}`);
         if (!response.ok) {
@@ -45,14 +53,27 @@ function displayCart(cartItems, totalAmount) {
 
 // Redirect to the cart page
 function goToCart() {
-    window.location.href = 'cart.html';
+    window.location.href = '/cart';
 }
 
 // Confirm checkout
 function confirmCheckout() {
+    //check if user is logged in
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+        alert('Please log in to proceed to checkout.');
+        return;
+    }
     alert('Checkout confirmed! Proceeding to order processing.');
-    // You could add further logic here, like redirecting to a confirmation page
-    // or sending the final cart details to your backend.
+    syncCartClearWithBackend();
+    // Redirect to the home page after checkout
+    window.location.href = '/home';
+}
+
+// Sync cart clearing with the backend
+async function syncCartClearWithBackend() {
+    const userId = localStorage.getItem('userId'); // Duff add await
+    await fetch(`/api/cart/clear-cart/${userId}`, { method: 'DELETE' });
 }
 
 // Fetch and display cart data on page load
