@@ -1,4 +1,5 @@
 const Cart = require('../models/cartModel');
+
 // add to cart
 exports.addItemToCart = async (req, res) => {
   const { userId, itemId, name, price } = req.body;
@@ -217,5 +218,23 @@ exports.updateCartItem = async (req, res) => {
   } catch (error) {
     console.error('Error updating cart item:', error);
     res.status(500).json({ error: 'Failed to update cart item' });
+  }
+};
+
+exports.checkCartExists = async (req, res) => {
+  try {
+      console.log('checkCartExists called with userId:', req.params.userId);
+      const userId = req.params.userId;
+      const cart = await Cart.findOne({ userId: userId });
+      console.log('Cart query result:', cart);
+
+      if (cart) {
+          res.status(200).json({ exists: true });
+      } else {
+          res.status(200).json({ exists: false });
+      }
+  } catch (error) {
+      console.error('Error in checkCartExists:', error);
+      res.status(500).json({ error: 'Internal server error', details: error });
   }
 };

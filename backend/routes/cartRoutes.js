@@ -21,5 +21,8 @@ router.delete('/cart/remove-from-cart', cartController.removeItemFromCart);
 router.get('/cart/view-cart/:userId', cartController.viewCart);
 router.delete('/cart/clear-cart/:userId', cartController.clearCart);
 
+//route to check if cart exists for a given userId
+router.get(`/cart/check-cart/:userId`, cartController.checkCartExists);
+
 
 module.exports = router;

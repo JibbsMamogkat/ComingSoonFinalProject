@@ -15,6 +15,7 @@ async function getUserId() {
 
 // Function to fetch cart data from the backend
 async function fetchCartData() {
+    await getUserId();
     const userId = localStorage.getItem('userId');
     try {
         const response = await fetch(`/api/cart/view-cart/${userId}`);
@@ -66,6 +67,7 @@ function confirmCheckout() {
     }
     alert('Checkout confirmed! Proceeding to order processing.');
     syncCartClearWithBackend();
+    console.log('Cart cleared');
     // Redirect to the home page after checkout
     window.location.href = '/home';
 }

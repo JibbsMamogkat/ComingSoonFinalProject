@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('Page loaded, attempting to fetch menu items...');
     
-    let userId = sessionStorage.getItem('userId');
-    if (!userId) {
-        userId = await getUserId(); // Your logic for retrieving userId if needed
-    }
     
     // Fetch menu items regardless of login status
     fetchMenuItems()
         .then(displayMenuItems)
         .catch(handleError);
-    
+
+    await getUserId();
+    let userId = localStorage.getItem('userId');
+    console.log("User ID taken from localStorage:", userId);
+
+
     // Check if userId exists before fetching cart data
     if (userId) {
         // Check if cart already exists for the user
@@ -42,22 +43,40 @@ function handleInexistentCartError(error) {
     console.error('Cart doesnt exist yet:', error);;
 }
 
-// Function to check if a cart exists for a given userId
+// Function to check if a cart exists for a given userId with enhanced checks and logs
 function checkIfCartExists(userId) {
     return new Promise((resolve, reject) => {
-        // Call the backend route to check if a cart exists
-        fetch(`/api/cart/exists/${userId}`)
+        if (!userId) {
+            console.error('checkIfCartExists Error: Invalid userId provided');
+            return reject(new Error('Invalid userId provided'));
+        }
+
+        console.log(`Initiating cart existence check for userId: ${userId}`);
+
+        fetch(`/api/cart/check-cart/${userId}`)
             .then(response => {
+                console.log('Received response from /api/cart/check-cart endpoint');
                 if (!response.ok) {
-                    throw new Error('Error checking cart existence');
+                    console.error(`checkIfCartExists Error: Response not OK. Status: ${response.status}`);
+                    throw new Error(`Failed to check cart existence. Status code: ${response.status}`);
                 }
                 return response.json();
             })
-            .then(data => resolve(data.exists)) // Assuming the response structure includes an 'exists' property
-            .catch(error => reject(error));
+            .then(data => {
+                if (data && typeof data.exists !== 'undefined') {
+                    console.log(`Cart existence check result for userId ${userId}: ${data.exists}`);
+                    resolve(data.exists);
+                } else {
+                    console.error('checkIfCartExists Error: Unexpected response structure', data);
+                    throw new Error('Unexpected response structure from server');
+                }
+            })
+            .catch(error => {
+                console.error('checkIfCartExists Error: Caught in catch block', error);
+                reject(error);
+            });
     });
 }
-
 // Fetches menu items from the API
 function fetchMenuItems() {
     return fetch('/api/menuItems')
